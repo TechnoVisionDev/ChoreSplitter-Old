@@ -2,9 +2,9 @@
 A web application to split chores with roomates!
 
 **Technologies:**
-- HTML/CSS
+- HTML/CSS 5
 - Bootstrap
-- Java
-- Apache Tomcat
+- Java 16
+- Apache Tomcat v10.0.6
 - React
 - MongoDB
