@@ -2,7 +2,6 @@
 
 body {
 	margin: 0;
-	background-color: #f4f4f4;
    	font-family: Roboto, sans-serif;
    	font-weight: 300;
 }
@@ -13,11 +12,11 @@ main {
 }
 
 nav {
-	background-color: #990001;
+	background-color: #bb0000;
 	display: flex;
     padding: 20px 30px 20px 30px;
     margin-bottom: 45px;
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid white;
 }
 
 nav a {
@@ -28,24 +27,22 @@ nav a {
 #home {
 	font-family: Outfit, sans-serif;
 	font-weight: 800;
-	color: #ebebeb;
+	color: white;
 	font-size: 30px;
 }
 
+#login-container {
+	margin-left: auto;
+}
+
 #login {
-    color: #fefefe;
+    color: white;
     background-color: transparent;
-    border: 2px solid #fefefe;
+    border: 2px solid white;
     border-radius: 20px;
     height: 37px;
     width: 85px;
     font-size: 0.9rem;
-    margin-left: auto;
-}
-
-#login:hover {
-	background: #ab3030;
-    cursor: pointer;
 }
 
 main {
@@ -78,8 +75,8 @@ main {
     font-family: Rubik, sans-serif;
     font-weight: 400;
     font-size: 1.2rem;
-    color: #fefefe;
-    background: #990001;
+    color: white;
+    background: #bb0000;
     border: 0;
     border-radius: 8px;
     margin-right: 1rem;
@@ -90,10 +87,10 @@ main {
 
 #register .fas {
     position: absolute;
-    left: 13%;
+    left: 10%;
     top: 20%;
     font-size: 32px;
-  }
+}
 
 #dashboard {
     background-color: transparent;
@@ -101,12 +98,15 @@ main {
     font-weight: 400;
     font-size: 1.2rem;
     color: black;
-
-    border: 4px solid #990001;
+    border: 4px solid #bb0000;
     border-radius: 8px;
     margin-right: 1rem;
     height: 3.5rem;
     width: 10rem;
+}
+
+button:hover {
+    opacity: 90%;
     cursor: pointer;
 }
 
@@ -119,10 +119,70 @@ footer > span {
     position: absolute;
     padding-top: 13%;
     padding-left: 5%;
-    color: #ebebeb;
+    color: white;
 }
 
 footer > svg {
     z-index: -1;
     display: block;
+}
+
+.textbox {
+	padding-left: 8px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid #8c8989;
+    border-radius: 3px;
+}
+
+.login-form-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 35px;
+}
+
+.login-form {
+	display: flex;
+	flex-flow: column;
+	gap: 10px;
+}
+
+.login-form .textbox {
+	width: 425px;
+}
+
+.login-button {
+	background-color: #bb0000;
+	color: white;
+	font-size: 15px;
+	height: 40px;
+	width: 425px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.login-button:hover {
+	background-color: #8c0000;
+}
+
+.login-button > i {
+	margin-right: 10px;
+}
+
+.terms {
+	cursor: pointer;
+}
+
+.error-message {
+	color: #bb0000;
+	font-size: 12px;
+	margin: 0;
+}
+
+.form-header {
+	margin-bottom: 10px;
 }

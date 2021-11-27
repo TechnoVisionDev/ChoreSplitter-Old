@@ -1,4 +1,4 @@
-package backend;
+package servlets;
 
 import java.io.IOException;
 
