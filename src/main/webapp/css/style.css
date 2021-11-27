@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&family=Roboto:wght@300&display=swap');
+
+body {
+	margin: 0;
+	background-color: #f4f4f4;
+   	font-family: Roboto, sans-serif;
+   	font-weight: 300;
+}
+
+main {
+   	padding-left: 30px;
+  	padding-right: 30px;
+}
+
+nav {
+	background-color: #990001;
+	display: flex;
+    padding: 20px 30px 20px 30px;
+    margin-bottom: 45px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+nav a {
+    text-decoration: none !important;
+    color: black;
+}
+
+#logo {
+	font-family: Outfit, sans-serif;
+	font-weight: 800;
+	color: #ebebeb;
+	font-size: 30px;
+}
+
+#login {
+    color: #fefefe;
+    background-color: transparent;
+    border: 2px solid #fefefe;
+    border-radius: 20px;
+    height: 37px;
+    width: 85px;
+    font-size: 0.9rem;
+    margin-left: auto;
+}
+
+#login:hover {
+	background: #ab3030;
+    cursor: pointer;
+}
+
+footer {
+	margin-top: 100px;
+	text-align: center;
+}
