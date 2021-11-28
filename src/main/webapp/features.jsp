@@ -18,7 +18,13 @@
   	<header>
   		<nav>
   			<a href="landing.jsp" id="home">ChoreSplitter!</a>			
-		  	<a href="login.jsp" id="login-container"><button id="login">Login</button></a>
+	  		<%
+	  			if (null == request.getSession().getAttribute("email")) {
+			        out.println("<a href=\"login.jsp\" id=\"login-container\"><button id=\"login\">Login</button></a>");
+			   	} else {
+			   		out.println("<a href=\"auth\" id=\"login-container\"><button id=\"login\">Logout</button></a>");
+			    }
+			%>
   		</nav>
   	</header>
     <main>

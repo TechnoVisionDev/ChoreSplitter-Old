@@ -15,6 +15,11 @@
     <title>ChoreSplitter</title>
 </head>
 <body>
+	<%
+		if (null != request.getSession().getAttribute("email")) {
+			response.sendRedirect("landing.jsp");
+		}
+	%>
   	<header>
   		<nav>
   			<a href="landing.jsp" id="home">ChoreSplitter!</a>			
