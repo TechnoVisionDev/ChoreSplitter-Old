@@ -69,7 +69,7 @@ main {
     display: inline;
 }
 
-#register {
+#dashboard-button {
     position: relative;
     padding-left: 3rem;
     font-family: Rubik, sans-serif;
@@ -85,14 +85,14 @@ main {
     cursor: pointer; 
 }
 
-#register .fas {
+#dashboard-button .fas {
     position: absolute;
     left: 10%;
     top: 20%;
     font-size: 32px;
 }
 
-#dashboard {
+#features-button {
     background-color: transparent;
     font-family: Rubik, sans-serif;
     font-weight: 400;

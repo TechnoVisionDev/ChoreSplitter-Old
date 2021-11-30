@@ -55,7 +55,7 @@ public class AuthServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("name", db.getName(email));
 				session.setAttribute("email", email);
-	            request.getRequestDispatcher("/landing.jsp").forward(request, response); 
+	            request.getRequestDispatcher("/group.jsp").forward(request, response); 
 			}	
 		}
 		
@@ -86,7 +86,7 @@ public class AuthServlet extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("name", name);
 					session.setAttribute("email", email);
-		            request.getRequestDispatcher("/landing.jsp").forward(request, response);
+		            request.getRequestDispatcher("/group.jsp").forward(request, response);
 		            return;
 				} catch (MongoWriteException e) {
 					errorMessage = "*That email address is already in use.";

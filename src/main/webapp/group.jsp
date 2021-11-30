@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js"></script>
     <script src="https://kit.fontawesome.com/4b6d728af0.js" crossorigin="anonymous"></script>
     
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
@@ -16,6 +15,11 @@
     <title>ChoreSplitter</title>
 </head>
 <body>
+	<%
+		if (null == request.getSession().getAttribute("email")) {
+			response.sendRedirect("login.jsp");
+		}
+	%>
   	<header>
   		<nav>
   			<a href="landing.jsp" id="home">ChoreSplitter!</a>			
@@ -29,14 +33,8 @@
   		</nav>
   	</header>
     <main>
-        <img src="assets/landing/logo.png" alt="ChoreSplitter Logo" id="logo">
-        <h1 id="large-header">The Ultimate Organization Tool</h1>
-        <div id="buttons">
-        	<button id="dashboard-button" onclick="window.location='group.jsp';">
-            	<i class="fas fa-users-cog"></i> &nbspMy Dashboard
-            </button>
-            <button id="features-button" onclick="window.location='features.jsp';">Features</button>
-        </div>
+    	<h1 class="form-header">Select a Group!</h1>
+    	<p>Insert details here</p>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>
