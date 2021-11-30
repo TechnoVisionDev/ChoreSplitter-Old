@@ -1,4 +1,4 @@
-package data;
+package chore;
 
 public class Chore {
 	private String name;
