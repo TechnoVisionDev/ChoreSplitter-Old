@@ -15,6 +15,11 @@
     <title>ChoreSplitter</title>
 </head>
 <body>
+	<%
+		if (null == request.getSession().getAttribute("email")) {
+			response.sendRedirect("login.jsp");
+		}
+	%>
   	<header>
   		<nav>
   			<a href="landing.jsp" id="home">ChoreSplitter!</a>			
@@ -28,14 +33,8 @@
   		</nav>
   	</header>
     <main>
-        <img src="assets/landing/logo.png" alt="ChoreSplitter Logo" id="logo">
-        <h1 id="large-header">The Ultimate Organization Tool</h1>
-        <div id="buttons">
-        	<button id="dashboard-button" onclick="window.location='group.jsp';">
-            	<i class="fas fa-users-cog"></i> &nbspMy Dashboard
-            </button>
-            <button id="features-button" onclick="window.location='features.jsp';">Features</button>
-        </div>
+    	<h1 class="form-header">Dashboard</h1>
+    	<p>Insert details here</p>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>

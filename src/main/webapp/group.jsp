@@ -33,8 +33,22 @@
   		</nav>
   	</header>
     <main>
-    	<h1 class="form-header">Select a Group!</h1>
-    	<p>Insert details here</p>
+    	<h1 class="page-header">Select a Housing Group!</h1>
+    	<p>Enter a group code or create your own.</p>
+    	<div id="group-body">
+    		<img src="assets/group/decoration1.png" alt="Woman doing chores" id="chores-decoration">
+	    	<div id="group-forms">
+		    	<form class="join-group-form" action="group" method="POST">
+		    		<input type="text" class="textbox" name="group-code" placeholder="Group Code" maxlength="6" required>
+		    		<button type="submit" name="join-group" class="join-button"><i class="fas fa-user-plus"></i> Join Group</button>
+		    	</form>
+		    	<p id="divider"></p>
+		    	<form class="join-group-form" action="group" method="POST">
+		    		<button type="submit" name="create-group" class="create-button"><i class="fas fa-users"></i> Create New Group</button>
+		    	</form>
+	    	</div>
+	    	<img src="assets/group/decoration2.png" alt="Woman doing chores" id="chores-decoration">
+    	</div>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>
