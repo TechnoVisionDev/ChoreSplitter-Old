@@ -7,12 +7,12 @@ public class Chore {
 	private double completion_time;
 	private String state;
 	
-	public Chore(String name, String description, int points, double completion_time, String state) {
+	public Chore(String name, String description, int points, double completion_time) {
 		this.name = name;
 		this.description = description;
 		this.points = points;
 		this.completion_time = completion_time;
-		this.state = state;
+		this.state = "Incomplete";
 	}
 	
 	public String getName() {
