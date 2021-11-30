@@ -10,8 +10,6 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.IndexOptions;
 
-import io.github.cdimascio.dotenv.Dotenv;
-
 /**
  * Interfaces with the MongoDB database.
  * @author Thomas Peters
