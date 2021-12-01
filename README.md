@@ -202,7 +202,7 @@ Below are some resources that have been instrumental in making this project a re
 [issues-shield]: https://img.shields.io/github/issues/TechnoVisionDev/ChoreSplitter.svg?style=for-the-badge
 [issues-url]: https://github.com/TechnoVisionDev/ChoreSplitter/issues
 [license-shield]: https://img.shields.io/github/license/TechnoVisionDev/ChoreSplitter.svg?style=for-the-badge
-[license-url]: https://github.com/TechnoVisionDev/ChoreSplitter/blob/master/LICENSE.txt
+[license-url]: https://github.com/TechnoVisionDev/ChoreSplitter/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/thomaspeters
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: src/main/webapp/assets/github/screenshot.png
