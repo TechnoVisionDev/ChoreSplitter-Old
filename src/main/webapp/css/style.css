@@ -15,8 +15,11 @@ nav {
 	background-color: #bb0000;
 	display: flex;
     padding: 20px 30px 20px 30px;
-    margin-bottom: 45px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #bb0000;
+    position: fixed;
+  	top: 0;
+  	z-index: 1000;
+  	width: calc(100% - 60px);
 }
 
 nav a {
@@ -50,7 +53,7 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 1rem;
+    padding-top: 7rem;
 }
 
 #logo {
@@ -59,7 +62,7 @@ main {
     border: 5px solid #8a8a8a;
     border-radius: 50%;
     display: block;
-    margin: 4rem auto 0 auto;
+    margin: 2.5rem auto 0 auto;
 }
 
 #large-header {
