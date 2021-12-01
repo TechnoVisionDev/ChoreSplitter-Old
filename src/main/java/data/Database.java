@@ -43,6 +43,8 @@ public class Database {
 		doc.append("email", user.getEmail());
 		doc.append("name", user.getName());
 		doc.append("password", user.getPassword());
+		doc.append("points", user.getPoints());
+		doc.append("avatar", "https://i.stack.imgur.com/l60Hf.png");
 		users.insertOne(doc);
 	}
 	

@@ -22,16 +22,13 @@ import jakarta.servlet.http.HttpSession;
 public class AuthServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -5277574000023873233L;
-	private Database db;
-
-	public void init() throws ServletException {
-		db = new Database();
-	}
 	
 	/**
 	 * Retrieves sensitive data from login and registration form.
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Database db = (Database) request.getServletContext().getAttribute("database");
+		
 		// Login form submitted
 		if (request.getParameter("login") != null) {
 			String email = request.getParameter("email");
