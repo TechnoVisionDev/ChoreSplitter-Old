@@ -47,7 +47,10 @@ public class GroupServlet extends HttpServlet {
 		
 		// Generate new housing group and code.
 		else if (request.getParameter("create-group") != null) {
-			code = NanoIdUtils.randomNanoId(RANDOM, ALPHABET, CODE_SIZE);
+			while (true) {
+				code = NanoIdUtils.randomNanoId(RANDOM, ALPHABET, CODE_SIZE);
+				if (!db.isGroup(code)) { break; }
+			}
 		}
 		
 		// Add code to database and redirect to dashboard.
