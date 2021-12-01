@@ -9,11 +9,13 @@ public class User {
 	private String email;
 	private String name;
 	private String password;
+	private int points;
 	
 	public User(String email, String name, String password) {
 		this.email = email;
 		this.name = name;
 		this.password = password;
+		points = 0;
 	}
 	
 	public String getEmail() {
@@ -26,5 +28,13 @@ public class User {
 	
 	public String getPassword() {
 		return password;
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+	
+	public void addPoints(int p) {
+		points += p;
 	}
 }
