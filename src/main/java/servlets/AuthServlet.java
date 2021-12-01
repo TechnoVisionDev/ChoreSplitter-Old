@@ -49,9 +49,7 @@ public class AuthServlet extends HttpServlet {
 	            request.getRequestDispatcher("/login.jsp").forward(request, response); 
 			} else {
 				// Create login session for user
-				HttpSession session = request.getSession();
-				session.setAttribute("name", db.getName(email));
-				session.setAttribute("email", email);
+				createSession(request.getSession(), db.getUserValue(email, "name"), email, db.getUserValue(email, "group"));
 	            request.getRequestDispatcher("/group.jsp").forward(request, response); 
 			}	
 		}
@@ -80,9 +78,7 @@ public class AuthServlet extends HttpServlet {
 				try { 
 					// Register user to database
 					db.registerUser(new User(email, name, password));
-					HttpSession session = request.getSession();
-					session.setAttribute("name", name);
-					session.setAttribute("email", email);
+					createSession(request.getSession(), name, email, db.getUserValue(email, "group"));
 		            request.getRequestDispatcher("/group.jsp").forward(request, response);
 		            return;
 				} catch (MongoWriteException e) {
@@ -104,6 +100,7 @@ public class AuthServlet extends HttpServlet {
         if (session.getAttribute("name") != null){
             session.removeAttribute("name");
             session.removeAttribute("email");
+            session.removeAttribute("group");
             request.getRequestDispatcher("/landing.jsp").forward(request, response); 
         }
 	}
@@ -115,5 +112,16 @@ public class AuthServlet extends HttpServlet {
 		if (email.isBlank()) { return false; }
 		Pattern zipPattern = Pattern.compile("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$");
 	    return zipPattern.matcher(email).matches();
+	}
+	
+	/**
+	 * Creates a new HTTP session for user and sets necessary attributes.
+	 */
+	private void createSession(HttpSession session, String name, String email, String code) {
+		session.setAttribute("name", name);
+		session.setAttribute("email", email);
+		if (code != null) {
+			session.setAttribute("group", code);
+		}
 	}
 }

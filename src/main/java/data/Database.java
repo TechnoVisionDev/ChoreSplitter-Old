@@ -9,6 +9,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.IndexOptions;
+import com.mongodb.client.model.UpdateOptions;
+import com.mongodb.client.model.Updates;
 
 /**
  * Interfaces with the MongoDB database.
@@ -16,6 +18,7 @@ import com.mongodb.client.model.IndexOptions;
  */
 public class Database {
 	
+	private final UpdateOptions upsert;
 	private final MongoCollection<Document> users;
 	
 	/**
@@ -24,6 +27,7 @@ public class Database {
 	 */
 	public Database() {
 		// Setup MongoDB client with URI and connect to main database.
+		upsert = new UpdateOptions().upsert(true);
         MongoClientURI clientURI = new MongoClientURI(System.getenv("DATABASE"));
         MongoClient mongoClient = new MongoClient(clientURI);
         MongoDatabase database = mongoClient.getDatabase("ChoreSplitter");
@@ -31,6 +35,7 @@ public class Database {
         // Initialize collections and indexes if they don't exist.
         users = database.getCollection("users");
         users.createIndex(Filters.eq("email", 1), new IndexOptions().unique(true));
+        users.createIndex(Filters.eq("group", 1));
 	}
 	
 	/**
@@ -61,14 +66,36 @@ public class Database {
 	}
 	
 	/**
-	 * Retrieves the name of the user from database.
-	 * @return String of user's name if found, otherwise null.
+	 * Retrieves a value from the user document in database.
+	 * @param email The email of the user.
+	 * @param key The key of the value you are requesting.
+	 * @return String value if found, otherwise null.
 	 */
-	public String getName(String email) {
+	public String getUserValue(String email, String key) {
 		Document user = users.find(Filters.eq("email", email)).first();
 		if (user != null) {
-			return user.getString("name");
+			return user.getString(key);
 		}
 		return null;
+	}
+	
+	/**
+	 * Adds a user to a housing group using a unique code.
+	 * @param email of the user stored in session.
+	 */
+	public void addUserToGroup(String email, String code) {
+		Document user = users.find(Filters.eq("email", email)).first();
+		if (user != null) {
+			users.updateOne(Filters.eq("email", email), Updates.set("group", code), upsert);
+		}
+	}
+	
+	/**
+	 * Checks if the specified group code exists in database.
+	 * @param unique group code
+	 * @return True if code points to a group, false if not.
+	 */
+	public boolean isGroup(String code) {
+		return (users.countDocuments(Filters.eq("group", code)) > 0);
 	}
 }

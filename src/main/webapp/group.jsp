@@ -16,8 +16,11 @@
 </head>
 <body>
 	<%
-		if (null == request.getSession().getAttribute("email")) {
+		HttpSession userSession = request.getSession();
+		if (null == userSession.getAttribute("email")) {
 			response.sendRedirect("login.jsp");
+		} else if (null != userSession.getAttribute("group")) {
+			response.sendRedirect("dashboard.jsp");
 		}
 	%>
   	<header>
@@ -38,12 +41,19 @@
     	<div id="group-body">
     		<img src="assets/group/decoration1.png" alt="Woman doing chores" id="chores-decoration">
 	    	<div id="group-forms">
-		    	<form class="join-group-form" action="group" method="POST">
+	    		<%
+					if (null != request.getAttribute("codeError")) {
+						out.println(request.getAttribute("codeError"));
+					} else {
+						out.println("<p class=\"error-message\" style=\"visibility: hidden;\">invisible</p>");
+					}
+				%>
+		    	<form class="join-group-form" id="groupcode" action="group" method="GET">
 		    		<input type="text" class="textbox" name="group-code" placeholder="Group Code" maxlength="6" required>
 		    		<button type="submit" name="join-group" class="join-button"><i class="fas fa-user-plus"></i> Join Group</button>
 		    	</form>
 		    	<p id="divider"></p>
-		    	<form class="join-group-form" action="group" method="POST">
+		    	<form class="join-group-form" action="group" method="GET">
 		    		<button type="submit" name="create-group" class="create-button"><i class="fas fa-users"></i> Create New Group</button>
 		    	</form>
 	    	</div>

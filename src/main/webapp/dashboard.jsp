@@ -34,7 +34,7 @@
   	</header>
     <main>
     	<h1 class="form-header">Dashboard</h1>
-    	<p>Insert details here</p>
+    	<p>Group Code: <%= request.getSession().getAttribute("group") %></p>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>

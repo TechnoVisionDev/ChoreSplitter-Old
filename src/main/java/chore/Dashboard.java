@@ -2,8 +2,8 @@ package chore;
 import java.util.*;
 
 public class Dashboard {
-	private LinkedList<Chore> all_chores = new LinkedList<Chore>();
 	
+	private LinkedList<Chore> all_chores = new LinkedList<Chore>();
 	
 	public Dashboard() {
 		

@@ -198,7 +198,7 @@ footer > svg {
 }
 
 #group-forms {
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 .join-group-form {
@@ -240,4 +240,8 @@ footer > svg {
 #group-body {
 	display: flex;
 	justify-content: space-evenly;
+}
+
+#groupcode {
+	margin-top: 5px;
 }
