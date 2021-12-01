@@ -2,6 +2,11 @@ package data;
 
 import java.util.*;
 
+/**
+ * Comparator to organize TreeMap in
+ * descending order.
+ */
+
 class Sort implements Comparator<User> {
 	
 	public int compare(User a, User b) {
@@ -12,19 +17,27 @@ class Sort implements Comparator<User> {
 public class Group {
 	public TreeMap<User, Integer> group;
 	
-	public String code;
+	public chore.Dashboard chore_list = new chore.Dashboard();
 	
-	public Group(String code) {
-		this.code = code;
+	public String group_code;
+	public String group_name;
+	
+	public Group(String group_code, String group_name) {
+		this.group_code = group_code;
+		this.group_name = group_name;
 		group = new TreeMap<User, Integer>(new Sort());
 	}
 	
 	public void setCode(String c) {
-		code = c;
+		group_code = c;
 	}
 	
 	public String getCode() {
-		return code;
+		return group_code;
+	}
+	
+	public void setName(String n) {
+		group_name = n;
 	}
 	
 	public void addUser(User u) {
@@ -37,5 +50,9 @@ public class Group {
 	
 	public User getLowest() {
 		return group.lastKey();
+	}
+	
+	public chore.Dashboard getDashboard() {
+		return chore_list;
 	}
 }
