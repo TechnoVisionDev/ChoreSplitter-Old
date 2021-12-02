@@ -39,7 +39,7 @@
 			%>
   		</nav>
   	</header>
-    <main id="main-group">
+    <main class="page-centered">
     	<h1 class="page-header">Select a Housing Group!</h1>
     	<p>Enter a group code or create your own.</p>
     	<div id="group-body">

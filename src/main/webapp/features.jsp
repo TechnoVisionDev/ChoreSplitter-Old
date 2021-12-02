@@ -31,7 +31,7 @@
 			%>
   		</nav>
   	</header>
-    <main>
+    <main class="page-centered">
     	<h1 class="form-header">Features</h1>
     	<p>Insert details here</p>
     </main>

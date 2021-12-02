@@ -39,7 +39,7 @@
 			%>
   		</nav>
   	</header>
-    <main>
+    <main class="page-centered">
     	<h1 class="form-header">Settings</h1>
     </main>
     <footer>
