@@ -42,17 +42,17 @@
     		<img src="assets/group/decoration1.png" alt="Woman doing chores" id="chores-decoration">
 	    	<div id="group-forms">
 	    		<%
-					if (null != request.getAttribute("codeError")) {
-						out.println(request.getAttribute("codeError"));
+					if (null != request.getAttribute("choreError")) {
+						out.println(request.getAttribute("choreError"));
 					} else {
 						out.println("<p class=\"error-message\" style=\"visibility: hidden;\">invisible</p>");
 					}
 				%>
 		    	<form class="add-chore-form" id="addchore" action="chore" method="GET">
 		    		<input type="text" class="textbox" name="chore-name" placeholder="Chore Name" required>
-		    		<input type="text" class="textbox" name="chore-description" placeholder="Chore Description" required>
-		    		<input type="number" class="textbox" name="chore-points" placeholder="Points Value of Chore" required>
-		    		<input type="number" class="textbox" name="chore-time" placeholder="Estimated Time for Chore Completion" required>
+		    		<input type="text" class="textbox" class="add-chore-form" name="chore-description" placeholder="Chore Description" required>
+		    		<input type="number" class="textbox" name="chore-points" placeholder="Point Value of Chore" required>
+		    		<input type="number" class="textbox" name="chore-time" placeholder="Estimated Time for Chore Completion (in days)" required>
 		    		<p id="divider"></p>
 		    		<button type="submit" name="submit-chore" class="create-button" class="add-chore-form">Add Chore!</button>
 		    	</form>
