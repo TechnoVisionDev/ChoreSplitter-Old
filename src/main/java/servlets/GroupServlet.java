@@ -49,7 +49,10 @@ public class GroupServlet extends HttpServlet {
 		else if (request.getParameter("create-group") != null) {
 			while (true) {
 				code = NanoIdUtils.randomNanoId(RANDOM, ALPHABET, CODE_SIZE);
-				if (!db.isGroup(code)) { break; }
+				if (!db.isGroup(code)) { 
+					db.createGroup(code);
+					break; 
+				}
 			}
 		}
 		

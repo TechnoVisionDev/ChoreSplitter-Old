@@ -44,6 +44,7 @@
     		<p id="dashboard-code"><b>Group:</b> <%= request.getSession().getAttribute("group") %></p>
     		<h1 class="form-header">Dashboard</h1>
     	</div>
+    	<button onclick="window.location='addChore.jsp';">Add Chore</button>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>

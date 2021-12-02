@@ -5,10 +5,10 @@ public class Chore {
 	private String name;
 	private String description;
 	private int points;
-	private double completion_time;
+	private int completion_time;
 	private String state;
 	
-	public Chore(String name, String description, int points, double completion_time) {
+	public Chore(String name, String description, int points, int completion_time) {
 		this.name = name;
 		this.description = description;
 		this.points = points;
@@ -40,11 +40,11 @@ public class Chore {
 		points = p;
 	}
 	
-	public double getCompletionTime() {
+	public int getCompletionTime() {
 		return completion_time;
 	}
 	
-	public void setCompletionTime(double t) {
+	public void setCompletionTime(int t) {
 		completion_time = t;
 	}
 	

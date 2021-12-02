@@ -39,28 +39,27 @@
 			%>
   		</nav>
   	</header>
-    <main>
+    <main class="page-centered">
     	<h1 class="page-header">Add Chore!</h1>
     	<p>Add a chore to your housing group. Time to get cleaning!</p>
     	<div id="group-body">
     		<img src="assets/group/decoration1.png" alt="Woman doing chores" id="chores-decoration">
 	    	<div id="group-forms">
-	    		<%
-					if (null != request.getAttribute("choreError")) {
-						out.println(request.getAttribute("choreError"));
-					} else {
-						out.println("<p class=\"error-message\" style=\"visibility: hidden;\">invisible</p>");
-					}
-				%>
 		    	<form class="add-chore-form" id="addchore" action="chore" method="GET">
 		    		<input type="text" class="textbox" name="chore-name" placeholder="Chore Name" required>
 		    		<input type="text" class="textbox" class="add-chore-form" name="chore-description" placeholder="Chore Description" required>
-		    		<input type="number" class="textbox" name="chore-points" placeholder="Point Value of Chore" min="0" max="100" required>
-		    		<input type="number" class="textbox" name="chore-time" placeholder="Estimated Time for Chore Completion (in days)" min="1" max="100" required>
+		    		<input type="number" class="textbox" name="chore-points" placeholder="Point Value of Chore" min="1" max="100" required>
+		    		<input type="number" class="textbox" name="chore-time" placeholder="Estimated Time for Chore Completion (in days)" min="1" max="365" required>
 		    		<p id="divider"></p>
 		    		<button type="submit" name="submit-chore" class="create-button" class="add-chore-form">Add Chore!</button>
+		    		<%
+						if (null != request.getAttribute("choreError")) {
+							out.println("<p class=\"error-message\" style=\"margin-top:15px;\">The chore you entered was invalid!</p>");
+						} else {
+							out.println("<p class=\"error-message\" style=\"visibility: hidden;\">invisible</p>");
+						}
+					%>
 		    	</form>
-		    	
 	    	</div>
 	    	<img src="assets/group/decoration2.png" alt="Man doing chores" id="chores-decoration">
     	</div>
