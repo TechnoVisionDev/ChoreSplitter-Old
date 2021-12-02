@@ -1,4 +1,4 @@
-package threads;
+package chat;
 
 import java.util.*;
 

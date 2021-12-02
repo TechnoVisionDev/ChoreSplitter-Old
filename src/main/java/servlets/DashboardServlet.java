@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 
+import data.Chore;
 import data.Database;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @WebServlet("/dashboard")
 public class DashboardServlet extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 5353638521656850770L;
 
 	/**
@@ -23,8 +24,9 @@ public class DashboardServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Database db = (Database) request.getServletContext().getAttribute("database");
-		String email = (String) request.getSession(false).getAttribute("email");
+		String group = (String) request.getSession(false).getAttribute("group");
 		
+		request.setAttribute("data", db.getChores(group));
 		request.getRequestDispatcher("/dashboard.jsp").forward(request, response); 
 	}
 }

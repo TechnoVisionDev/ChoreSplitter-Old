@@ -1,6 +1,8 @@
 package data;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistries;
@@ -38,19 +40,20 @@ public class Database {
 	public Database() {
 		// Register custom codecs
 		upsert = new UpdateOptions().upsert(true);        
-        CodecRegistry pojoCodecRegistry = CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build());
-        CodecRegistry codecRegistry = CodecRegistries.fromRegistries(com.mongodb.MongoClient.getDefaultCodecRegistry(), pojoCodecRegistry);
+        CodecRegistry defaultCodecRegistry = MongoClientSettings.getDefaultCodecRegistry();
+        CodecRegistry fromProvider = CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build());
+        CodecRegistry pojoCodecRegistry = CodecRegistries.fromRegistries(defaultCodecRegistry, fromProvider);
         
         // Setup MongoDB client with URI and connect to main database.
         ConnectionString connectionString = new ConnectionString(System.getenv("DATABASE"));
         MongoClientSettings clientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
-                .codecRegistry(codecRegistry)
+                .codecRegistry(pojoCodecRegistry)
                 .build();
         
         // Initialize collections and indexes if they don't exist.
         MongoClient mongoClient = MongoClients.create(clientSettings);
-        MongoDatabase database = mongoClient.getDatabase("ChoreSplitter");
+        MongoDatabase database = mongoClient.getDatabase("ChoreSplitter").withCodecRegistry(pojoCodecRegistry);
            
         users = database.getCollection("users");
         users.createIndex(Filters.eq("email", 1), new IndexOptions().unique(true));
@@ -139,5 +142,17 @@ public class Database {
 	public void addChore(String code, Chore chore) {
 		Bson update = Updates.push("chores", chore);
 		groups.findOneAndUpdate(Filters.eq("group", code), update);
+	}
+	
+	public List<Chore> getChores(String code) {
+		Document group = groups.find(Filters.eq("group", code)).first();
+		if (group != null) {
+			List<Chore> chores = new ArrayList<Chore>();
+			for (Document doc : group.getList("chores", Document.class)) {
+				chores.add(new Chore(doc.getString("name"), doc.getString("description"), doc.getInteger("points"), doc.getInteger("time")));
+			}
+			return chores;
+		}
+		return null;
 	}
 }

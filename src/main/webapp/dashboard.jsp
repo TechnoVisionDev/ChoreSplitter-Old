@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,6 +44,11 @@
     	<div id="dashboard-header">
     		<p id="dashboard-code"><b>Group:</b> <%= request.getSession().getAttribute("group") %></p>
     		<h1 class="form-header">Dashboard</h1>
+    	</div>
+    	<div>
+    		<c:forEach var="chore" items="${data}">
+    			<p>${chore.name}</p>
+    		</c:forEach>
     	</div>
     	<button onclick="window.location='addChore.jsp';">Add Chore</button>
     </main>
