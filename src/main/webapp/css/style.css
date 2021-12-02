@@ -245,3 +245,9 @@ footer > svg {
 #groupcode {
 	margin-top: 5px;
 }
+
+.add-chore-form {
+	display: inline-block;
+	text-align: center;
+	
+}
