@@ -22,7 +22,11 @@
 	  			if (null == request.getSession().getAttribute("email")) {
 			        out.println("<a href=\"login.jsp\" id=\"login-container\"><button id=\"login\">Login</button></a>");
 			   	} else {
-			   		out.println("<a href=\"auth\" id=\"login-container\"><button id=\"login\">Logout</button></a>");
+			   		out.println("<div id=\"login-container\">");
+			   		out.println("<i class=\"fas fa-clipboard-list\" id=\"settings-button\" onclick=\"window.location='dashboard.jsp';\"></i>");
+			   		out.println("<i class=\"fas fa-cog\" id=\"settings-button\" onclick=\"window.location='settings.jsp';\"></i>");
+			   		out.println("<button id=\"login\" onclick=\"window.location='auth';\">Logout</button>");
+			   		out.println("</div>");
 			    }
 			%>
   		</nav>

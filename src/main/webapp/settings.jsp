@@ -15,6 +15,14 @@
     <title>ChoreSplitter</title>
 </head>
 <body>
+	<%
+		HttpSession userSession = request.getSession();
+		if (null == userSession.getAttribute("email")) {
+			response.sendRedirect("login.jsp");
+		} else if (null == userSession.getAttribute("group")) {
+			response.sendRedirect("group.jsp");
+		}
+	%>
   	<header>
   		<nav>
   			<a href="landing.jsp" id="home">ChoreSplitter!</a>			
@@ -32,8 +40,7 @@
   		</nav>
   	</header>
     <main>
-    	<h1 class="form-header">Features</h1>
-    	<p>Insert details here</p>
+    	<h1 class="form-header">Settings</h1>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>

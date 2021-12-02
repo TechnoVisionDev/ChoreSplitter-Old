@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&family=Roboto:wght@300&family=Rubik:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Roboto:wght@300&family=Rubik:wght@400;500&display=swap');
 
 body {
 	margin: 0;
@@ -7,8 +7,12 @@ body {
 }
 
 main {
+	padding-top: 7rem;
    	padding-left: 30px;
   	padding-right: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 nav {
@@ -34,6 +38,10 @@ nav a {
 	font-size: 30px;
 }
 
+#home:hover {
+	color: gold;
+}
+
 #login-container {
 	margin-left: auto;
 }
@@ -48,12 +56,20 @@ nav a {
     font-size: 0.9rem;
 }
 
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 7rem;
+#login:hover {
+	background-color: #8c0000;
+}
+
+#settings-button {
+	color: white;
+	font-size: 22px;
+	padding-right: 15px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+#settings-button:hover {
+	color: gold;
 }
 
 #logo {
@@ -88,6 +104,10 @@ main {
     cursor: pointer; 
 }
 
+#dashboard-button:hover {
+	background-color: #8c0000;
+}
+
 #dashboard-button .fas {
     position: absolute;
     left: 10%;
@@ -106,11 +126,16 @@ main {
     margin-right: 1rem;
     height: 3.5rem;
     width: 10rem;
+    cursor: pointer;
 }
 
-button:hover {
-    opacity: 90%;
-    cursor: pointer;
+#features-button:hover {
+	background-color: gold;
+}
+
+#buttons {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 footer {
@@ -249,4 +274,28 @@ footer > svg {
 .add-chore-form {
 	display: inline-block;
 	text-align: center;	
+}
+
+#main-group {
+	align-items: center;
+}
+
+#dashboard-header {
+	display: flex;
+}
+
+#dashboard-header:after {
+	flex: 1;
+  	content: '';
+}
+
+#dashboard-code  {
+	flex: 1;
+	font-family: Outfit, sans-serif;
+	font-weight: 400;
+	font-size: 25px;
+}
+
+#dashboard-code > b {
+	font-weight: 800;
 }
