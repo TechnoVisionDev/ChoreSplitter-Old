@@ -57,7 +57,7 @@ public class GroupServlet extends HttpServlet {
 		if (code != null) {
 			db.addUserToGroup(email, code);
 			request.getSession().setAttribute("group", code);
-			request.getRequestDispatcher("/dashboard.jsp").forward(request, response); 
+			request.getRequestDispatcher("/dashboard").forward(request, response); 
 		}
 	}
 	
