@@ -1,7 +1,8 @@
 package threads;
 
 import java.util.*;
-import chore.Chore;
+
+import data.Chore;
 import data.User;
 
 public class UserThread extends Thread {
@@ -21,7 +22,7 @@ public class UserThread extends Thread {
 	
 	public void run() {
 		while (true) {
-			state = chore.getState();
+			//state = chore.getState();
 			if (state.equals("Complete")) {
 				completed_chores.add(chore);
 				user.addPoints(chore.getPoints());

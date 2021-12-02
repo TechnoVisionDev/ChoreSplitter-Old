@@ -5,21 +5,20 @@ import java.util.LinkedList;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientOptions;
-import com.mongodb.MongoClientURI;
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoWriteException;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.IndexOptions;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
-
-import chore.Chore;
-import data.codecs.ChoreCodec;
 
 /**
  * Interfaces with the MongoDB database.
@@ -39,18 +38,24 @@ public class Database {
 	public Database() {
 		// Register custom codecs
 		upsert = new UpdateOptions().upsert(true);        
-        CodecRegistry codecRegistry = CodecRegistries.fromRegistries(CodecRegistries.fromCodecs(new ChoreCodec()), MongoClient.getDefaultCodecRegistry());
-        MongoClientOptions.Builder options = MongoClientOptions.builder().codecRegistry(codecRegistry);
+        CodecRegistry pojoCodecRegistry = CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build());
+        CodecRegistry codecRegistry = CodecRegistries.fromRegistries(com.mongodb.MongoClient.getDefaultCodecRegistry(), pojoCodecRegistry);
         
         // Setup MongoDB client with URI and connect to main database.
-        MongoClient mongoClient = new MongoClient(new MongoClientURI(System.getenv("DATABASE"), options));
-        MongoDatabase database = mongoClient.getDatabase("ChoreSplitter");
+        ConnectionString connectionString = new ConnectionString(System.getenv("DATABASE"));
+        MongoClientSettings clientSettings = MongoClientSettings.builder()
+                .applyConnectionString(connectionString)
+                .codecRegistry(codecRegistry)
+                .build();
         
         // Initialize collections and indexes if they don't exist.
+        MongoClient mongoClient = MongoClients.create(clientSettings);
+        MongoDatabase database = mongoClient.getDatabase("ChoreSplitter");
+           
         users = database.getCollection("users");
         users.createIndex(Filters.eq("email", 1), new IndexOptions().unique(true));
         users.createIndex(Filters.eq("group", 1));
-        
+            
         groups = database.getCollection("groups");
         groups.createIndex(Filters.eq("group", 1), new IndexOptions().unique(true));
 	}

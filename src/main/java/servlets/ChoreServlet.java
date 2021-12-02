@@ -2,7 +2,7 @@ package servlets;
 
 import java.io.IOException;
 
-import chore.Chore;
+import data.Chore;
 import data.Database;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
