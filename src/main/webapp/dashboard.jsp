@@ -16,8 +16,11 @@
 </head>
 <body>
 	<%
-		if (null == request.getSession().getAttribute("email")) {
+		HttpSession userSession = request.getSession();
+		if (null == userSession.getAttribute("email")) {
 			response.sendRedirect("login.jsp");
+		} else if (null == userSession.getAttribute("group")) {
+			response.sendRedirect("group.jsp");
 		}
 	%>
   	<header>

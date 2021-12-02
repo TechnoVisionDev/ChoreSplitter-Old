@@ -19,8 +19,8 @@
 		HttpSession userSession = request.getSession();
 		if (null == userSession.getAttribute("email")) {
 			response.sendRedirect("login.jsp");
-		} else if (null != userSession.getAttribute("group")) {
-			response.sendRedirect("dashboard.jsp");
+		} else if (null == userSession.getAttribute("group")) {
+			response.sendRedirect("group.jsp");
 		}
 	%>
   	<header>
@@ -51,8 +51,8 @@
 		    	<form class="add-chore-form" id="addchore" action="chore" method="GET">
 		    		<input type="text" class="textbox" name="chore-name" placeholder="Chore Name" required>
 		    		<input type="text" class="textbox" class="add-chore-form" name="chore-description" placeholder="Chore Description" required>
-		    		<input type="number" class="textbox" name="chore-points" placeholder="Point Value of Chore" required>
-		    		<input type="number" class="textbox" name="chore-time" placeholder="Estimated Time for Chore Completion (in days)" required>
+		    		<input type="number" class="textbox" name="chore-points" placeholder="Point Value of Chore" min="0" max="100" required>
+		    		<input type="number" class="textbox" name="chore-time" placeholder="Estimated Time for Chore Completion (in days)" min="1" max="100" required>
 		    		<p id="divider"></p>
 		    		<button type="submit" name="submit-chore" class="create-button" class="add-chore-form">Add Chore!</button>
 		    	</form>
