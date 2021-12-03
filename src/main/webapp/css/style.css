@@ -242,6 +242,10 @@ footer > svg {
 	cursor: pointer;
 }
 
+.create-button:hover {
+	background-color: #edcb09;
+}
+
 .divider {
 	border-bottom: 1px solid #ebebeb;
 }
@@ -298,8 +302,10 @@ footer > svg {
 
 .chore-container {
 	display: grid;
+	overflow-y: scroll;
+	max-height: 655px;
 	grid-column-gap: 50px;
-	grid-template-rows: auto auto auto;
+	grid-template-rows: auto;
 	background-color: #ebebeb;
 	padding: 10px;
 	margin: 0 250px 0 250px;
@@ -307,15 +313,28 @@ footer > svg {
 }
 
 .chore {
+	display: flex;
+	justify-content: space-between;
 	background-color: #c2c0c0;
   	border: 1px solid #c2c0c0;
   	padding: 20px;
-  	font-family: Outfit, sans-serif;
-	font-weight: 500;
-  	font-size: 20px;
-  	text-align: left;
   	margin: 5px 0 5px 0;
   	border-radius: 8px;
+  	font-family: Outfit, sans-serif;
+}
+
+.chore-name {
+	margin: 0;
+	font-weight: 600;
+  	font-size: 28px;
+  	text-align: left;
+}
+
+.chore-data {
+	margin: 0;
+	font-weight: 400;
+  	font-size: 18px;
+  	text-align: left;
 }
 
 #profile {
@@ -325,12 +344,17 @@ footer > svg {
 	flex-flow: column;
 }
 
+#bottom-dashboard {
+	display: flex;
+	justify-content: space-evenly;
+}
+
 #profile > img {
 	height: 8rem;
     width: 8rem;
     border: 5px solid #515257;;
     border-radius: 50%;
-    cursor: pointer;
+    cursor: pointer;	
 }
 
 #add-chore-button {
@@ -358,7 +382,6 @@ footer > svg {
 	border: none;
 	border-radius: 3px;
 	cursor: pointer;
-	margin: auto;
 }
 
 #leaderboard-button:hover {
@@ -368,7 +391,7 @@ footer > svg {
 #chat-button {
 	background-color: #bb0000;
 	color: white;
-	margin-top: 5px;
+	margin-top: 15px;
 }
 
 #chat-button:hover {
@@ -378,4 +401,37 @@ footer > svg {
 #dashboard-separator {
 	margin: 40px 250px 40px 250px;
 	border-width: 3px;
+}
+
+aside {
+	grid-area: aside;
+}
+
+#chore-buttons {
+	display: flex;
+	justify-content: center;
+	margin-top: 15px;
+}
+
+#claim-chore-button {
+	background-color: green;
+	color: white;
+	font-size: 15px;
+	height: 20px;
+	width: 30px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+#delete-chore-button {
+	background-color: #bb0000;
+	color: white;
+	font-size: 15px;
+	height: 20px;
+	width: 30px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
 }

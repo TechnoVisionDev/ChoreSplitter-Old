@@ -49,17 +49,33 @@
     	</div>
     	<button id="add-chore-button" onclick="window.location='addChore.jsp';">Add Chore</button>
     	<div class="chore-container">
-    		<c:forEach var="chore" items="${data}">
-    			<div class="chore">${chore.name}, ${chore.points} Points</div>
+    		<c:forEach var="chore" items="${data}" varStatus="theCount">
+    			<div class="chore">
+    				<div>
+    					<h1 class="chore-name">${chore.name}</h1>
+    					<p class="chore-data">${chore.description}</p>
+    				</div>
+		    		<aside>
+		    			<p class="chore-data">${chore.points} Points</p>
+		    			<div id="chore-buttons">
+		    				<button id="claim-chore-button" onclick="window.location='claimChore';"><i class="fas fa-check"></i></button>
+		    				<button id="delete-chore-button" onclick="window.location='deleteChore';"><i class="fas fa-times"></i></button>
+		    			</div>
+		    		</aside>
+    			</div>
     		</c:forEach>
     	</div>
     	<p class="divider" id="dashboard-separator"></p>
-    	<div id="profile">
-    		<img src="<%=request.getAttribute("avatar")%>" alt="Your profile picture" onclick="window.location='settings.jsp';">
-    		<h1 style="margin-bottom: 0px;"><%=request.getAttribute("name")%></h1>
-    		<p><%=request.getAttribute("points")%> Points</p>
-    		<button id="leaderboard-button" onclick="window.location='leaderboard';">Leaderboard</button>
-    		<button id="chat-button" onclick="window.location='chat';">Group Chat</button>
+    	<div id="bottom-dashboard">
+    		<img src="assets/dashboard/decoration1.png" alt="Man doing chores" id="chores-decoration">
+    		<div id="profile">
+	    		<img src="<%=request.getAttribute("avatar")%>" alt="Your profile picture" onclick="window.location='settings.jsp';">
+	    		<h1 style="margin-bottom: 0px;"><%=request.getAttribute("name")%></h1>
+	    		<p><%=request.getAttribute("points")%> Points</p>
+	    		<button id="leaderboard-button" onclick="window.location='leaderboard';">Leaderboard</button>
+	    		<button id="chat-button" onclick="window.location='chat';">Group Chat</button>
+    		</div>
+    		<img src="assets/dashboard/decoration2.png" alt="Man doing chores" id="chores-decoration">
     	</div>
     </main>
     <footer>
