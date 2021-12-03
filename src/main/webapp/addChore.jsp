@@ -50,7 +50,7 @@
 		    		<input type="text" class="textbox" class="add-chore-form" name="chore-description" placeholder="Chore Description" required>
 		    		<input type="number" class="textbox" name="chore-points" placeholder="Point Value of Chore" min="1" max="100" required>
 		    		<input type="number" class="textbox" name="chore-time" placeholder="Estimated Time for Chore Completion (in days)" min="1" max="365" required>
-		    		<p id="divider"></p>
+		    		<p class="divider"></p>
 		    		<button type="submit" name="submit-chore" class="create-button" class="add-chore-form">Add Chore!</button>
 		    		<%
 						if (null != request.getAttribute("choreError")) {

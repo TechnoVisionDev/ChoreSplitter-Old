@@ -5,8 +5,6 @@ package data;
  * @author Thomas Peters
  */
 public class User {
-	
-	// need a variable to keep track of group? 
 
 	private String email;
 	private String name;
@@ -39,5 +37,4 @@ public class User {
 	public void addPoints(int p) {
 		points += p;
 	}
-	
 }

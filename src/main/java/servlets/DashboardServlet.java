@@ -2,6 +2,8 @@ package servlets;
 
 import java.io.IOException;
 
+import org.bson.Document;
+
 import data.Chore;
 import data.Database;
 import jakarta.servlet.ServletException;
@@ -24,7 +26,19 @@ public class DashboardServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Database db = (Database) request.getServletContext().getAttribute("database");
+		String email = (String) request.getSession(false).getAttribute("email");
 		String group = (String) request.getSession(false).getAttribute("group");
+		
+		Document user = db.getUser(email);
+		if (user != null) {
+			request.setAttribute("name", user.getString("name"));
+			request.setAttribute("points", user.getInteger("points"));
+			request.setAttribute("avatar", user.getString("avatar"));
+		} else {
+			request.setAttribute("name", "Username");
+			request.setAttribute("points", 0);
+			request.setAttribute("avatar", "https://i.stack.imgur.com/34AD2.jpg");
+		}
 		
 		request.setAttribute("data", db.getChores(group));
 		request.getRequestDispatcher("/dashboard.jsp").forward(request, response); 

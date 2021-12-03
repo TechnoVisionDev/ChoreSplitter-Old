@@ -74,8 +74,21 @@ public class Database {
 		doc.append("name", user.getName());
 		doc.append("password", user.getPassword());
 		doc.append("points", user.getPoints());
-		doc.append("avatar", "https://i.stack.imgur.com/l60Hf.png");
+		doc.append("avatar", "https://i.stack.imgur.com/34AD2.jpg");
 		users.insertOne(doc);
+	}
+	
+	/**
+	 * Retrieves user document to access values from.
+	 * @param email email of the user to access.
+	 * @return User document, null if not found.
+	 */
+	public Document getUser(String email) {
+		Document user = users.find(Filters.eq("email", email)).first();
+		if (user != null) {
+			return user;
+		}
+		return null;
 	}
 	
 	/**

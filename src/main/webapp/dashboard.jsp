@@ -43,14 +43,21 @@
     <main>
     	<div id="dashboard-header">
     		<p id="dashboard-code"><b>Group:</b> <%= request.getSession().getAttribute("group") %></p>
-    		<h1 class="form-header">Dashboard</h1>
+    		<h1 class="dashboard-header">Dashboard</h1>
     	</div>
-    	<div>
+    	<button id="add-chore-button" onclick="window.location='addChore.jsp';">Add Chore</button>
+    	<div class="chore-container">
     		<c:forEach var="chore" items="${data}">
-    			<p>${chore.name}</p>
+    			<div class="chore">${chore.name} -- ${chore.points} Points</div>
     		</c:forEach>
     	</div>
-    	<button onclick="window.location='addChore.jsp';">Add Chore</button>
+    	<p class="divider" id="dashboard-separator"></p>
+    	<div id="profile">
+    		<img src="<%=request.getAttribute("avatar")%>" alt="Your profile picture" onclick="window.location='settings.jsp';">
+    		<h1 style="margin-bottom: 0px;"><%=request.getAttribute("name")%></h1>
+    		<p><%=request.getAttribute("points")%> Points</p>
+    		<button id="leaderboard-button" onclick="window.location='leaderboard';">Leaderboard</button>
+    	</div>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>

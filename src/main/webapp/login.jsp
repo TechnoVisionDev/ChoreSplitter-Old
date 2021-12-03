@@ -46,7 +46,7 @@
 	  				<input type="password" class="textbox" name="password" autoComplete="current-password" required pattern="\S(.*\S)?">
 	  				<button type="submit" name="login" class="login-button"><i class="fas fa-sign-in-alt"></i>Sign In</button>
 	  			</form>
-	  			<p id="divider"></p>
+	  			<p class="divider"></p>
 				<div class="g-signin2" data-onsuccess="onSignIn" data-width="425" data-height="40" data-longtitle="true" data-theme="dark"></div>
   			</div>
   			<form class="login-form" action="auth" method="POST">
