@@ -6,14 +6,14 @@ import java.util.concurrent.*;
 public class ChoreReset {
 
 	public ChoreReset(){
-	    this.startScheduler();
+	    this.start();
 	}
 	
-	/*
+	/**
 	 * Set to execute run() from ResetTask every Sunday at 5 am
-	 * in order to reset reset leaderboard
+	 * in order to reset chores
 	 */
-	private void startScheduler() {
+	private void start() {
 		
 	    Calendar cal = Calendar.getInstance();
 		
@@ -28,13 +28,13 @@ public class ChoreReset {
 	    dayToDelay.put(Calendar.FRIDAY, 1);
 	    dayToDelay.put(Calendar.SATURDAY, 0);
 	    
-	    // get current time and date to calculate how long to delay
+	    // get current time and date
 	    int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
 	    int hour = cal.get(Calendar.HOUR_OF_DAY);
 	    int delayInDays = dayToDelay.get(dayOfWeek);
 	    int delayInHours = 0;
 	    
-	    // it is Sunday, but before 5 am
+	    // calculate how long to delay based on current time and date
 	    if( delayInDays == 6 && hour < 5 ){
 	    	delayInHours = 5 - hour;
 	    }
@@ -43,6 +43,7 @@ public class ChoreReset {
 	    }
 	    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	    
+	    // Execute after calculated delay, but also
 	    // 168 hours in a week (the period) after which it should execute again
 	    scheduler.scheduleAtFixedRate(new ResetTask(), delayInHours, 168, TimeUnit.HOURS);
 	}
