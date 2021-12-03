@@ -10,12 +10,14 @@ public class User {
 	private String name;
 	private String password;
 	private int points;
+	private String avatar;
 	
-	public User(String email, String name, String password) {
+	public User(String email, String name, String password, String avatar) {
 		this.email = email;
 		this.name = name;
 		this.password = password;
 		points = 0;
+		this.avatar= avatar;
 	}
 	
 	public String getEmail() {
@@ -36,5 +38,9 @@ public class User {
 	
 	public void addPoints(int p) {
 		points += p;
+	}
+	
+	public String getAvatar() {
+		return avatar;
 	}
 }

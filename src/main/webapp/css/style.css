@@ -38,10 +38,6 @@ nav a {
 	font-size: 30px;
 }
 
-#home:hover {
-	color: gold;
-}
-
 #login-container {
 	margin-left: auto;
 }
@@ -66,10 +62,6 @@ nav a {
 	padding-right: 15px;
 	vertical-align: middle;
 	cursor: pointer;
-}
-
-#settings-button:hover {
-	color: gold;
 }
 
 #logo {
@@ -127,10 +119,6 @@ nav a {
     height: 3.5rem;
     width: 10rem;
     cursor: pointer;
-}
-
-#features-button:hover {
-	background-color: gold;
 }
 
 #buttons {
@@ -312,19 +300,22 @@ footer > svg {
 	display: grid;
 	grid-column-gap: 50px;
 	grid-template-rows: auto auto auto;
-	background-color: #515257;
+	background-color: #ebebeb;
 	padding: 10px;
 	margin: 0 250px 0 250px;
 	border-radius: 3px;
 }
 
 .chore {
-	background-color: rgba(255, 255, 255, 0.8);
-  	border: 1px solid rgba(0, 0, 0, 0.8);
+	background-color: #c2c0c0;
+  	border: 1px solid #c2c0c0;
   	padding: 20px;
-  	font-size: 30px;
+  	font-family: Outfit, sans-serif;
+	font-weight: 500;
+  	font-size: 20px;
   	text-align: left;
   	margin: 5px 0 5px 0;
+  	border-radius: 8px;
 }
 
 #profile {

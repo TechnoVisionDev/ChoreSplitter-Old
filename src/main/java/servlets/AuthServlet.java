@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpSession;
 public class AuthServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -5277574000023873233L;
-	private static final String DEFAULT_AVATAR = "";
+	private static final String DEFAULT_AVATAR = "https://i.stack.imgur.com/34AD2.jpg";
 	
 	/**
 	 * Retrieves sensitive data from login and registration form.
@@ -78,7 +78,7 @@ public class AuthServlet extends HttpServlet {
 			} else {
 				try { 
 					// Register user to database
-					db.registerUser(new User(email, name, password));
+					db.registerUser(new User(email, name, password, DEFAULT_AVATAR));
 					createSession(request.getSession(), name, email, db.getUserValue(email, "group"));
 		            request.getRequestDispatcher("/group.jsp").forward(request, response);
 		            return;

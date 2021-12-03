@@ -74,7 +74,7 @@ public class Database {
 		doc.append("name", user.getName());
 		doc.append("password", user.getPassword());
 		doc.append("points", user.getPoints());
-		doc.append("avatar", "https://i.stack.imgur.com/34AD2.jpg");
+		doc.append("avatar", user.getAvatar());
 		users.insertOne(doc);
 	}
 	
@@ -157,6 +157,11 @@ public class Database {
 		groups.findOneAndUpdate(Filters.eq("group", code), update);
 	}
 	
+	/**
+	 * Retrieves a list of chore objects from a group document.
+	 * @param unique group code.
+	 * @return List of chore objects, null if group not found.
+	 */
 	public List<Chore> getChores(String code) {
 		Document group = groups.find(Filters.eq("group", code)).first();
 		if (group != null) {

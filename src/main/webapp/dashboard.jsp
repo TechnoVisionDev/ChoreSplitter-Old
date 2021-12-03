@@ -48,7 +48,7 @@
     	<button id="add-chore-button" onclick="window.location='addChore.jsp';">Add Chore</button>
     	<div class="chore-container">
     		<c:forEach var="chore" items="${data}">
-    			<div class="chore">${chore.name} -- ${chore.points} Points</div>
+    			<div class="chore">${chore.name}, ${chore.points} Points</div>
     		</c:forEach>
     	</div>
     	<p class="divider" id="dashboard-separator"></p>
