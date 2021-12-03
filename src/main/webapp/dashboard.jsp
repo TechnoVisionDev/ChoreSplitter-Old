@@ -33,6 +33,8 @@
 			   	} else {
 			   		out.println("<div id=\"login-container\">");
 			   		out.println("<i class=\"fas fa-clipboard-list\" id=\"settings-button\" onclick=\"window.location='dashboard';\"></i>");
+			   		out.println("<i class=\"far fa-chart-bar\" id=\"settings-button\" onclick=\"window.location='leaderboard';\"></i>");
+			   		out.println("<i class=\"far fa-comments\" id=\"settings-button\" onclick=\"window.location='chat';\"></i>");
 			   		out.println("<i class=\"fas fa-cog\" id=\"settings-button\" onclick=\"window.location='settings.jsp';\"></i>");
 			   		out.println("<button id=\"login\" onclick=\"window.location='auth';\">Logout</button>");
 			   		out.println("</div>");
@@ -57,6 +59,7 @@
     		<h1 style="margin-bottom: 0px;"><%=request.getAttribute("name")%></h1>
     		<p><%=request.getAttribute("points")%> Points</p>
     		<button id="leaderboard-button" onclick="window.location='leaderboard';">Leaderboard</button>
+    		<button id="chat-button" onclick="window.location='chat';">Group Chat</button>
     	</div>
     </main>
     <footer>
