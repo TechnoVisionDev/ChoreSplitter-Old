@@ -24,10 +24,15 @@ public class DashboardServlet extends HttpServlet {
 	 * Displays chores to dashboard from database
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Check if user is in a group before proceeding.
+		String group = (String) request.getSession(false).getAttribute("group");
+		if (group == null) {
+			request.getRequestDispatcher("/group.jsp").forward(request, response); 
+		}
+		
+		// Get user and chore data
 		Database db = (Database) request.getServletContext().getAttribute("database");
 		String email = (String) request.getSession(false).getAttribute("email");
-		String group = (String) request.getSession(false).getAttribute("group");
-		
 		Document user = db.getUser(email);
 		if (user != null) {
 			request.setAttribute("name", user.getString("name"));
@@ -39,6 +44,7 @@ public class DashboardServlet extends HttpServlet {
 			request.setAttribute("avatar", "https://i.stack.imgur.com/34AD2.jpg");
 		}
 		
+		// Send data to dashboard.jsp
 		request.setAttribute("data", db.getChores(group));
 		request.getRequestDispatcher("/dashboard.jsp").forward(request, response); 
 	}

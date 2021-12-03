@@ -42,7 +42,7 @@
   		</nav>
   	</header>
     <main class="page-centered">
-    	<h1 class="page-header">Settings</h1>
+    	<h1 class="page-header">Group Chat</h1>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>
