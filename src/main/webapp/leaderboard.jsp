@@ -43,13 +43,21 @@
   	</header>
     <main class="page-centered">
     	<h1 class="page-header">Leaderboard</h1>
-    	<c:forEach var="user" items="${data}" varStatus="loop">
-    		<h2>${user.name} -- ${user.points} Points</h2>
-    		<c:if test="${loop.last}">
-    			<h1 class="page-header">Slot of Shame</h1>
-    			<h2>${user.name}</h2>
-       		</c:if>
-    	</c:forEach>
+    	<div class="leaderboard-container">
+	    	<c:forEach var="user" items="${data}" varStatus="loop">
+	    		<div class="leaderboard-entry">
+	    				<img class="leaderboard-img" src="${user.avatar}" alt="A user's profile picture">
+	    			    <div>
+	    					<h1 class="chore-name">${user.name}</h1>
+	    					<p class="chore-data">${user.points} Points</p>
+	    				</div>
+	    				<h1 class="leaderboard-position">#${loop.count}</h1>
+	    		</div>
+	    	</c:forEach>
+    	</div>
+    	<p class="leaderboard-divider"></p>
+    	<h1 class="page-header">Slot of Shame</h1>
+	    <h2>${user.name}</h2>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>
