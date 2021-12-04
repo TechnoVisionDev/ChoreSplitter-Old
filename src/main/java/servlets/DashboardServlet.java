@@ -29,7 +29,7 @@ public class DashboardServlet extends HttpServlet {
 		if (group == null) {
 			request.getRequestDispatcher("/group.jsp").forward(request, response); 
 		}
-		
+
 		// Get user and chore data
 		Database db = (Database) request.getServletContext().getAttribute("database");
 		String email = (String) request.getSession(false).getAttribute("email");
@@ -43,7 +43,7 @@ public class DashboardServlet extends HttpServlet {
 			request.setAttribute("points", 0);
 			request.setAttribute("avatar", "https://i.stack.imgur.com/34AD2.jpg");
 		}
-		
+	
 		// Send data to dashboard.jsp
 		request.setAttribute("data", db.getChores(group));
 		request.getRequestDispatcher("/dashboard.jsp").forward(request, response); 

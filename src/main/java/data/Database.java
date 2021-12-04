@@ -154,7 +154,17 @@ public class Database {
 	 */
 	public void addChore(String code, Chore chore) {
 		Bson update = Updates.push("chores", chore);
-		groups.findOneAndUpdate(Filters.eq("group", code), update);
+		groups.updateOne(Filters.eq("group", code), update);
+	}
+	
+	/**
+	 * Deletes a chore object from the group document's list of chores.
+	 * @param unique group code.
+	 * @param index of chore in array.
+	 */
+	public void deleteChore(String code, int index) {
+		groups.updateOne(Filters.eq("group", code), Updates.unset("chores." + index));
+		groups.updateOne(Filters.eq("group", code), Updates.pull("chores", null));
 	}
 	
 	/**
@@ -167,10 +177,39 @@ public class Database {
 		if (group != null) {
 			List<Chore> chores = new ArrayList<Chore>();
 			for (Document doc : group.getList("chores", Document.class)) {
-				chores.add(new Chore(doc.getString("name"), doc.getString("description"), doc.getInteger("points"), doc.getInteger("time")));
+				chores.add(new Chore(doc.getString("name"), doc.getString("description"), doc.getInteger("points"), doc.getInteger("time"), doc.getString("claimed")));
 			}
 			return chores;
 		}
 		return null;
+	}
+	
+	/**
+	 * Marks a chore in group array as claimed by user email.
+	 * @param email email of the user claiming the chore.
+	 * @param code unique group code.
+	 * @param index of the chore in array.
+	 */
+	public void claimChore(String email, String code, int index) {
+		Bson update = Updates.set("chores." + index + ".claimed", email);
+		groups.updateOne(Filters.eq("group", code), update);
+	}
+	
+	public void completeChore(String code, int index) {
+		Document group = groups.find(Filters.eq("group", code)).first();
+		if (group != null) {
+			// Get chore data
+			Document chore = group.getList("chores", Document.class).get(index);
+			int points = chore.getInteger("points");
+			String email = chore.getString("claimed");
+			
+			// Add points to user
+			users.find(Filters.eq("email", email)).first();
+			users.updateOne(Filters.eq("email", email), Updates.inc("points", points));
+			
+			// Delete chore from database
+			groups.updateOne(Filters.eq("group", code), Updates.unset("chores." + index));
+			groups.updateOne(Filters.eq("group", code), Updates.pull("chores", null));
+		}
 	}
 }

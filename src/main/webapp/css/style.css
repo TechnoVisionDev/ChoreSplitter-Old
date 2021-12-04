@@ -337,6 +337,15 @@ footer > svg {
   	text-align: left;
 }
 
+.claimed-img {
+	height: 3.2rem;
+    width: 3.2rem;
+    border: 3px solid #515257;;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: 25px;
+}
+
 #profile {
 	display: flex;
 	justify-content: center;
@@ -413,8 +422,8 @@ aside {
 	margin-top: 15px;
 }
 
-#claim-chore-button {
-	background-color: green;
+#claim-chore-button, #finish-chore-button {
+	background-color: #2e8cff;
 	color: white;
 	font-size: 15px;
 	height: 20px;
@@ -434,4 +443,8 @@ aside {
 	border: none;
 	border-radius: 3px;
 	cursor: pointer;
+}
+
+#finish-chore-button {
+	background-color: green;
 }

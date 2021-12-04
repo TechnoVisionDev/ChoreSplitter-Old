@@ -44,4 +44,23 @@ public class ChoreServlet extends HttpServlet {
 			request.getRequestDispatcher("/addChore.jsp").forward(request, response); 
 		}
 	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Database db = (Database) request.getServletContext().getAttribute("database");
+		String group = (String) request.getSession(false).getAttribute("group");
+		String email = (String) request.getSession(false).getAttribute("email");
+		
+		if (null != request.getParameter("claim")) {
+			int index = Integer.parseInt(request.getParameter("claim"));
+			db.claimChore(email, group, index);
+		} else if (null != request.getParameter("finish")) {
+			int index = Integer.parseInt(request.getParameter("finish"));
+			db.completeChore(group, index);
+		} else if (null != request.getParameter("delete")) {
+			int index = Integer.parseInt(request.getParameter("delete"));
+			db.deleteChore(group, index);
+		}
+		
+		response.sendRedirect(request.getContextPath() + "/dashboard");
+	}
 }
