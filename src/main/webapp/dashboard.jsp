@@ -26,20 +26,19 @@
 	%>
   	<header>
   		<nav>
-  			<a href="landing.jsp" id="home">ChoreSplitter!</a>			
-	  		<%
-	  			if (null == request.getSession().getAttribute("email")) {
-			        out.println("<a href=\"login.jsp\" id=\"login-container\"><button id=\"login\">Login</button></a>");
-			   	} else {
-			   		out.println("<div id=\"login-container\">");
-			   		out.println("<i class=\"fas fa-clipboard-list\" id=\"settings-button\" onclick=\"window.location='dashboard';\"></i>");
-			   		out.println("<i class=\"far fa-chart-bar\" id=\"settings-button\" onclick=\"window.location='leaderboard';\"></i>");
-			   		out.println("<i class=\"far fa-comments\" id=\"settings-button\" onclick=\"window.location='chat';\"></i>");
-			   		out.println("<i class=\"fas fa-cog\" id=\"settings-button\" onclick=\"window.location='settings.jsp';\"></i>");
-			   		out.println("<button id=\"login\" onclick=\"window.location='auth';\">Logout</button>");
-			   		out.println("</div>");
-			    }
-			%>
+  			<a href="landing.jsp" id="home">ChoreSplitter!</a>
+  			<c:if test="${empty email}" var="condition">
+  				<a href="login.jsp" id="login-container"><button id="login">Login</button></a>
+  			</c:if>
+  			<c:if test="${!condition}">
+				<div id="login-container">
+			   	<i class="fas fa-clipboard-list" id="settings-button" onclick="window.location='dashboard';"></i>
+			   	<i class="far fa-chart-bar" id="settings-button" onclick="window.location='leaderboard';"></i>
+			   	<i class="far fa-comments" id="settings-button" onclick="window.location='chat';"></i>
+			   	<i class="fas fa-cog" id="settings-button" onclick="window.location='settings.jsp';"></i>
+			   	<button id="login" onclick="window.location='auth';">Logout</button>
+			   	</div>
+  			</c:if>			
   		</nav>
   	</header>
     <main>

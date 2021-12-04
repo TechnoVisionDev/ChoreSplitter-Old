@@ -46,7 +46,7 @@ public class AuthServlet extends HttpServlet {
 			} 
 			
 			if (errorMessage != null) {
-				request.setAttribute("loginError", "<p class=\"error-message\">" + errorMessage + "</p>");
+				request.setAttribute("loginError", errorMessage);
 	            request.getRequestDispatcher("/login.jsp").forward(request, response); 
 			} else {
 				// Create login session for user
@@ -88,7 +88,7 @@ public class AuthServlet extends HttpServlet {
 			}
 			
 			// Registration failed, send error message
-			request.setAttribute("registerError", "<p class=\"error-message\">" + errorMessage + "</p>");
+			request.setAttribute("registerError", errorMessage);
 	        request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}

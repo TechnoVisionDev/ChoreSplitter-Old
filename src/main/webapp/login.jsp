@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,13 +33,12 @@
 	  			<form class="login-form" action="auth" method="POST">
 	  				<div>
 		  				<h1 class="form-header">Login</h1>
-			  			<%
-						    if (null != request.getAttribute("loginError")) {
-						        out.println(request.getAttribute("loginError"));
-						    } else {
-						    	out.println("<p class=\"error-message\" style=\"visibility: hidden;\">invisible</p>");
-						    }
-						%>
+		  				<c:if test="${not empty loginError}" var="condition">
+		  					<p class="error-message">${loginError}</p>
+		  				</c:if>
+		  				<c:if test="${!condition}">
+		  					<p class="error-message" style="visibility: hidden;">invisible</p>
+		  				</c:if>
 		  			</div>
 	  				<label>Email</label>
 	  				<input type="email" class="textbox" name="email" required>
@@ -52,13 +52,12 @@
   			<form class="login-form" action="auth" method="POST">
 	  				<div>
 		  				<h1 class="form-header">Register</h1>
-			  			<%
-						    if (null != request.getAttribute("registerError")) {
-						    	out.println(request.getAttribute("registerError"));
-						    } else {
-						    	out.println("<p class=\"error-message\" style=\"visibility: hidden;\">invisible</p>");
-						    }
-						%>
+		  				<c:if test="${not empty registerError}" var="condition">
+		  					<p class="error-message">${registerError}</p>
+		  				</c:if>
+		  				<c:if test="${!condition}">
+		  					<p class="error-message" style="visibility: hidden;">invisible</p>
+		  				</c:if>
 		  			</div>
   				<label>Email</label>
   				<input type="text" class="textbox" name="email" required>
