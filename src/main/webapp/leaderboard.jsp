@@ -26,7 +26,6 @@
 	%>
   	<header>
   		<nav>
-  			<a href="landing.jsp" id="home">ChoreSplitter!</a>			
   			<a href="landing.jsp" id="home">ChoreSplitter!</a>
   			<c:if test="${empty email}" var="condition">
   				<a href="login.jsp" id="login-container"><button id="login">Login</button></a>

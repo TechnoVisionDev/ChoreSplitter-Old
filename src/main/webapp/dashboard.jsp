@@ -46,32 +46,37 @@
     		<p id="dashboard-code"><b>Group:</b> <%= request.getSession().getAttribute("group") %></p>
     		<h1 class="dashboard-header">Dashboard</h1>
     	</div>
-    	<button id="add-chore-button" onclick="window.location='addChore.jsp';">Add Chore</button>
-    	<div class="chore-container">
-    		<c:forEach var="chore" items="${data}" varStatus="theCount">
-    			<div class="chore">
-    				<div>
-    					<h1 class="chore-name">${chore.name}</h1>
-    					<p class="chore-data">${chore.description}</p>
-    				</div>
-				    <c:if test="${not empty chore.claimed}">
-				    	<img class="claimed-img" src="<%=request.getAttribute("avatar")%>" alt="A user's profile picture">
-				    </c:if>
-		    		<aside>
-		    			<p class="chore-data">${chore.points} Points</p>
-		    			<form id="chore-buttons" action="chore" method="POST">
-		    				<c:if test="${empty chore.claimed}">
-		    					<button id="claim-chore-button" name="claim" value="${theCount.index}"><i class="fas fa-user-check"></i></button>
-		    				</c:if>
-		    				<c:if test="${not empty chore.claimed}">
-		    					<button id="finish-chore-button" name="finish" value="${theCount.index}"><i class="fas fa-check"></i></button>
-		    				</c:if>
-		    				<button id="delete-chore-button" name="delete" value="${theCount.index}"><i class="fas fa-times"></i></button>
-		    			</form>
-		    		</aside>
-    			</div>
-    		</c:forEach>
-    	</div>
+    	<c:if test="${not empty data}">
+    		<button id="add-chore-button" onclick="window.location='addChore.jsp';">Add Chore</button>
+	    	<div class="chore-container">
+	    		<c:forEach var="chore" items="${data}" varStatus="theCount">
+	    			<div class="chore">
+	    				<div>
+	    					<h1 class="chore-name">${chore.name}</h1>
+	    					<p class="chore-data">${chore.description}</p>
+	    				</div>
+					    <c:if test="${not empty chore.claimed}">
+					    	<img class="claimed-img" src="<%=request.getAttribute("avatar")%>" alt="A user's profile picture">
+					    </c:if>
+			    		<aside>
+			    			<p class="chore-data">${chore.points} Points</p>
+			    			<form id="chore-buttons" action="chore" method="POST">
+			    				<c:if test="${empty chore.claimed}">
+			    					<button id="claim-chore-button" name="claim" value="${theCount.index}"><i class="fas fa-user-check"></i></button>
+			    				</c:if>
+			    				<c:if test="${not empty chore.claimed}">
+			    					<button id="finish-chore-button" name="finish" value="${theCount.index}"><i class="fas fa-check"></i></button>
+			    				</c:if>
+			    				<button id="delete-chore-button" name="delete" value="${theCount.index}"><i class="fas fa-times"></i></button>
+			    			</form>
+			    		</aside>
+	    			</div>
+	    		</c:forEach>
+	    	</div>
+    	</c:if>
+    	<c:if test="${empty data}">
+    		<button id="add-first-chore-button" onclick="window.location='addChore.jsp';">Add Chore</button>
+    	</c:if>
     	<p class="divider" id="dashboard-separator"></p>
     	<div id="bottom-dashboard">
     		<img src="assets/dashboard/decoration1.png" alt="Man doing chores" id="chores-decoration">

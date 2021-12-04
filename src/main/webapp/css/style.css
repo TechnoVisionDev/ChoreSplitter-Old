@@ -366,7 +366,7 @@ footer > svg {
     cursor: pointer;	
 }
 
-#add-chore-button {
+#add-chore-button, #add-first-chore-button {
 	background-color: #bb0000;
 	color: white;
 	font-size: 15px;
@@ -378,7 +378,12 @@ footer > svg {
 	margin: 0 250px 5px auto;
 }
 
-#add-chore-button:hover {
+#add-first-chore-button {
+	width: 300px;
+	margin: auto;
+}
+
+#add-chore-button:hover, #add-first-chore-button:hover {
 	background-color: #8c0000;
 }
 
