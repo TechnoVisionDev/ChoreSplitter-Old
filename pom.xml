@@ -36,8 +36,8 @@
     	<groupId>org.junit.jupiter</groupId>
     	<artifactId>junit-jupiter-engine</artifactId>
     	<version>5.8.1</version>
-    <scope>test</scope>
-</dependency>
+    	<scope>test</scope>
+	</dependency>
   </dependencies>
   
   <build>
