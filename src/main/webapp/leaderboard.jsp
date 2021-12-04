@@ -57,7 +57,11 @@
     	</div>
     	<p class="leaderboard-divider"></p>
     	<h1 class="page-header">Slot of Shame</h1>
-	    <h2>${user.name}</h2>
+    	<div class="shame">
+	    	<img class="profile-img" src="${shame.avatar}" alt="Slot of shame profile picture">
+	    	<h1 style="margin-bottom: 0px;">${shame.name}</h1>
+	    	<p>${shame.points} Points</p>
+    	</div>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>

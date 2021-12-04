@@ -32,7 +32,9 @@ public class LeaderboardServlet extends HttpServlet {
 		
 		// Sort group by points as send to leaderboard.jsp
 		Database db = (Database) request.getServletContext().getAttribute("database");
-		request.setAttribute("data", db.getGroup(group));
+		List<User> users = db.getGroup(group);
+		request.setAttribute("data", users);
+		request.setAttribute("shame", users.get(users.size()-1));
 		request.getRequestDispatcher("/leaderboard.jsp").forward(request, response); 
 	}
 }

@@ -81,7 +81,7 @@
     	<div id="bottom-dashboard">
     		<img src="assets/dashboard/decoration1.png" alt="Man doing chores" id="chores-decoration">
     		<div id="profile">
-	    		<img src="<%=request.getAttribute("avatar")%>" alt="Your profile picture" onclick="window.location='settings.jsp';">
+	    		<img class="profile-img" src="<%=request.getAttribute("avatar")%>" alt="Your profile picture" onclick="window.location='settings.jsp';">
 	    		<h1 style="margin-bottom: 0px;"><%=request.getAttribute("name")%></h1>
 	    		<p><%=request.getAttribute("points")%> Points</p>
 	    		<button id="leaderboard-button" onclick="window.location='leaderboard';">Leaderboard</button>

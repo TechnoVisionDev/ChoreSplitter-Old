@@ -358,7 +358,7 @@ footer > svg {
 	justify-content: space-evenly;
 }
 
-#profile > img {
+.profile-img {
 	height: 8rem;
     width: 8rem;
     border: 5px solid #515257;;
@@ -471,7 +471,7 @@ aside {
   	border: 1px solid #c2c0c0;
   	padding: 20px;
   	margin: 5px 0 5px 0;
-  	width: 400px;
+  	width: 500px;
   	border-radius: 8px;
   	font-family: Outfit, sans-serif;
 }
@@ -493,5 +493,16 @@ aside {
 .leaderboard-divider {
 	border-bottom: 3px solid #ebebeb;
 	margin-top: 30px;
-	width: 500px;
+	width: 550px;
+}
+
+.shame {
+	background-color: #ebebeb;
+	padding: 30px 200px 30px 200px;
+	border-radius: 10px;
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column;
 }
