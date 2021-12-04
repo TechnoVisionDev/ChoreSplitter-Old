@@ -6,11 +6,16 @@ package data;
  */
 public class User {
 
-	private String email;
-	private String name;
-	private String password;
-	private int points;
-	private String avatar;
+	public String email;
+	public String name;
+	public String password;
+	public int points;
+	public String avatar;
+	public String group;
+	
+	public User() {
+		
+	}
 	
 	public User(String email, String name, String password, String avatar) {
 		this.email = email;
@@ -42,5 +47,9 @@ public class User {
 	
 	public String getAvatar() {
 		return avatar;
+	}
+	
+	public String getGroup() {
+		return group;
 	}
 }

@@ -1,10 +1,10 @@
 package servlets;
 
 import java.io.IOException;
-
-import org.bson.Document;
+import java.util.List;
 
 import data.Database;
+import data.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -30,6 +30,9 @@ public class LeaderboardServlet extends HttpServlet {
 			request.getRequestDispatcher("/group.jsp").forward(request, response); 
 		}
 		
+		// Sort group by points as send to leaderboard.jsp
+		Database db = (Database) request.getServletContext().getAttribute("database");
+		request.setAttribute("data", db.getGroup(group));
 		request.getRequestDispatcher("/leaderboard.jsp").forward(request, response); 
 	}
 }

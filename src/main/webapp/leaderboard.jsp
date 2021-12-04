@@ -43,6 +43,13 @@
   	</header>
     <main class="page-centered">
     	<h1 class="page-header">Leaderboard</h1>
+    	<c:forEach var="user" items="${data}" varStatus="loop">
+    		<h2>${user.name} -- ${user.points} Points</h2>
+    		<c:if test="${loop.last}">
+    			<h1 class="page-header">Slot of Shame</h1>
+    			<h2>${user.name}</h2>
+       		</c:if>
+    	</c:forEach>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>

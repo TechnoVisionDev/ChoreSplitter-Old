@@ -1,6 +1,7 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,8 +18,10 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.IndexOptions;
+import com.mongodb.client.model.Sorts;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 
@@ -148,6 +151,16 @@ public class Database {
 	}
 	
 	/**
+	 * Retrieves a list of users in a group sorted by points.
+	 * @return list of users in same group.
+	 */
+	public List<User> getGroup(String code) {
+		Bson match = Aggregates.match(Filters.eq("group", code));
+		Bson sort = Aggregates.sort(Sorts.descending("points"));
+		return users.aggregate(Arrays.asList(match, sort), User.class).into(new ArrayList<User>());
+	}
+	
+	/**
 	 * Adds a chore object to a group document's list of chores.
 	 * @param unique group code.
 	 * @param chore to be added to list.
@@ -195,6 +208,11 @@ public class Database {
 		groups.updateOne(Filters.eq("group", code), update);
 	}
 	
+	/**
+	 * Completes a chore, deleting it from database and awarding points to user.
+	 * @param code unique group code.
+	 * @param index of the chore in array.
+	 */
 	public void completeChore(String code, int index) {
 		Document group = groups.find(Filters.eq("group", code)).first();
 		if (group != null) {
