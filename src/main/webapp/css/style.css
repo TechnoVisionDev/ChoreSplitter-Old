@@ -506,3 +506,16 @@ aside {
 	align-items: center;
 	flex-flow: column;
 }
+
+#settings-body {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.settings-form {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
+}
+
+

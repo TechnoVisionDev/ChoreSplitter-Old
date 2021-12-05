@@ -43,6 +43,34 @@
   	</header>
     <main class="page-centered">
     	<h1 class="page-header">Settings</h1>
+    	<p>Make changes to your profile</p>
+    	<div id="settings-body">
+    		<img src="assets/group/decoration1.png" alt="Woman doing chores" id="chores-decoration">
+    		<div id="settings-form">
+	    		<form class="settings-form" id="settings" action="settings" method="GET">
+	    			<label>
+	    				Choose a profile picture: 
+						<input type="file" class="profile" name="user-profile" accept="image/png, image/jpeg" required>
+	    			</label>
+	    			<label>
+	    				Change your name: 
+						<input type="text" class="textbox" name="user-name" placeholder="Your name" required>
+	    			
+	    			</label>
+	    			<button type="submit" name="leave-group" class="join-button" class="settings-form">Leave Group</button>
+			   		<p class="divider"></p>
+			   		<button type="submit" name="submit-settings" class="create-button" class="settings-form">Submit Changes</button>
+			   		<%
+						if (null != request.getAttribute("settingsError")) {
+							out.println("<p class=\"error-message\" style=\"margin-top:15px;\">The chore you entered was invalid!</p>");
+						} else {
+							out.println("<p class=\"error-message\" style=\"visibility: hidden;\">invisible</p>");
+						}
+					%>
+	    		</form>
+	    	</div>
+	    	<img src="assets/group/decoration2.png" alt="Man doing chores" id="chores-decoration">
+    	</div>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>
