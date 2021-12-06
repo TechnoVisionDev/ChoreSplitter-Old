@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat.css">
     <script src="https://kit.fontawesome.com/4b6d728af0.js" crossorigin="anonymous"></script>
     
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
@@ -43,6 +44,16 @@
   	</header>
     <main class="page-centered">
     	<h1 class="page-header">Group Chat</h1>
+    	<div id="wrapper">
+        	<div id="menu">
+        		<p class="welcome"><b>Group:</b> ${group}<b></b></p>
+        	</div>
+        <div id="chatbox"></div>
+            <form name="message" action="chat" method="POST">
+                <input name="usermsg" type="text" id="usermsg" placeholder="Message"/>
+                <input name="submitmsg" type="submit" id="submitmsg" value="Send" />
+            </form>
+        </div>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>

@@ -32,4 +32,14 @@ public class ChatServlet extends HttpServlet {
 		
 		request.getRequestDispatcher("/chat.jsp").forward(request, response); 
 	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Check if user is in a group before proceeding.
+		String group = (String) request.getSession(false).getAttribute("group");
+		if (group == null) {
+			request.getRequestDispatcher("/group.jsp").forward(request, response); 
+		}
+		
+		request.getRequestDispatcher("/chat.jsp").forward(request, response); 
+	}
 }
