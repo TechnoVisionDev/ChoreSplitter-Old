@@ -50,7 +50,7 @@
     <main class="page-centered">
     	<h1 class="page-header">Group Chat</h1>
 	    <div id="chat" class="chat"></div>
-	    <div id="wrapper">
+	    <div>
 			<input type="text" name="msg" id="msg" placeholder="Message"/>
 	        <button id="enter" onclick="return sendMsg();">Enter</button>
 	    </div>

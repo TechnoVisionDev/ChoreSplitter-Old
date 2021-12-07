@@ -574,7 +574,7 @@ aside {
   		padding-left: 10px;
   	}
   	
-  	p {
+  	.no-margin-p {
   		margin: 0;
   	}
   	

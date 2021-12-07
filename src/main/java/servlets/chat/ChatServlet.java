@@ -32,6 +32,7 @@ public class ChatServlet extends HttpServlet {
 		String email = (String) request.getSession(false).getAttribute("email");
 		Document user = db.getUser(email);
 		
+		// Send data to chat.jsp
 		request.setAttribute("avatar", user.getString("avatar"));
 		request.getRequestDispatcher("/chat.jsp").forward(request, response); 
 	}
