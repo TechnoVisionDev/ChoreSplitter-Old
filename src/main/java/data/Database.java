@@ -2,7 +2,6 @@ package data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.bson.Document;
@@ -152,7 +151,7 @@ public class Database {
 	 */
 	public void createGroup(String code) {
 		Document group = new Document("group", code);
-		group.append("chores", new LinkedList<Chore>());
+		group.append("chores", new ArrayList<Chore>());
 		groups.insertOne(group);
 	}
 	
@@ -194,11 +193,13 @@ public class Database {
 	public List<Chore> getChores(String code) {
 		Document group = groups.find(Filters.eq("group", code)).first();
 		if (group != null) {
-			List<Chore> chores = new ArrayList<Chore>();
-			for (Document doc : group.getList("chores", Document.class)) {
-				chores.add(new Chore(doc.getString("name"), doc.getString("description"), doc.getInteger("points"), doc.getInteger("time"), doc.getString("claimed")));
-			}
-			return chores;
+			try {
+				List<Chore> chores = new ArrayList<Chore>();
+				for (Document doc : group.getList("chores", Document.class)) {
+					chores.add(new Chore(doc.getString("name"), doc.getString("description"), doc.getInteger("points"), doc.getInteger("time"), doc.getString("claimed")));
+				}
+				return chores;
+			} catch (NullPointerException ignored) { } // Chore doesn't exist in database
 		}
 		return null;
 	}
@@ -223,17 +224,19 @@ public class Database {
 		Document group = groups.find(Filters.eq("group", code)).first();
 		if (group != null) {
 			// Get chore data
-			Document chore = group.getList("chores", Document.class).get(index);
-			int points = chore.getInteger("points");
-			String email = chore.getString("claimed");
-			
-			// Add points to user
-			users.find(Filters.eq("email", email)).first();
-			users.updateOne(Filters.eq("email", email), Updates.inc("points", points));
-			
-			// Delete chore from database
-			groups.updateOne(Filters.eq("group", code), Updates.unset("chores." + index));
-			groups.updateOne(Filters.eq("group", code), Updates.pull("chores", null));
+			try {
+				Document chore = group.getList("chores", Document.class).get(index);
+				int points = chore.getInteger("points");
+				String email = chore.getString("claimed");
+				
+				// Add points to user
+				users.find(Filters.eq("email", email)).first();
+				users.updateOne(Filters.eq("email", email), Updates.inc("points", points));
+				
+				// Delete chore from database
+				groups.updateOne(Filters.eq("group", code), Updates.unset("chores." + index));
+				groups.updateOne(Filters.eq("group", code), Updates.pull("chores", null));
+			} catch (IndexOutOfBoundsException ignored) { } // Chore doesn't exist in database
 		}
 	}
 	
@@ -241,6 +244,6 @@ public class Database {
 	 * Resets all group dashboards by clearing list of chores.
 	 */
 	public void resetDashboards() {
-		groups.updateMany(new Document(), Updates.unset("chores"));
+		groups.updateMany(new Document(), Updates.set("chores", new ArrayList<Chore>()));
 	}
 }

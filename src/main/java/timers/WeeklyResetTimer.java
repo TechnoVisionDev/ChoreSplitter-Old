@@ -11,6 +11,12 @@ import data.Database;
  */
 public class WeeklyResetTimer {
 	
+	private ScheduledExecutorService scheduler;
+	
+	public WeeklyResetTimer() {
+		scheduler = Executors.newScheduledThreadPool(1);
+	}
+	
 	/**
 	 * Set to execute run() from ResetTask every Sunday at 5 am in order to reset chores.
 	 * @param db MongoDB database instance.
@@ -43,10 +49,16 @@ public class WeeklyResetTimer {
 	    else {
 	    	delayInHours = delayInDays * 24 + ((24 - hour) + 5);
 	    }
-	    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	    
 	    // Execute after calculated delay, but also
 	    // 168 hours in a week (the period) after which it should execute again
 	    scheduler.scheduleAtFixedRate(new ResetChore(db), delayInHours, 168, TimeUnit.HOURS);
+	}
+	
+	/**
+	 * Immediately terminates timer to avoid zombie threads on server shutdown.
+	 */
+	public void stop() {
+		scheduler.shutdownNow();
 	}
 }

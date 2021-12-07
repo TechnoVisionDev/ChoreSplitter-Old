@@ -14,6 +14,8 @@ import timers.WeeklyResetTimer;
 @WebListener("/app")
 public class AppListener implements ServletContextListener {
 	
+	private WeeklyResetTimer resetTimer;
+	
     public void contextInitialized(ServletContextEvent event) {
     	// Application is being deployed
     	// Register "global" objects here
@@ -22,11 +24,12 @@ public class AppListener implements ServletContextListener {
     	sc.setAttribute("database", db);
     	
     	// Start weekly reset timer 
-    	WeeklyResetTimer reset = new WeeklyResetTimer();
-    	reset.start(db);
+    	resetTimer = new WeeklyResetTimer();
+    	resetTimer.start(db);
     }
     
     public void contextDestroyed(ServletContextEvent event) {
     	// Application is being undeployed
+    	resetTimer.stop();
     }
 }
