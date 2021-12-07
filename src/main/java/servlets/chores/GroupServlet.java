@@ -1,4 +1,4 @@
-package servlets;
+package servlets.chores;
 
 import java.io.IOException;
 import java.util.Random;

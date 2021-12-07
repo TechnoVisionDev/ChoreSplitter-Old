@@ -5,4 +5,14 @@
     <welcome-file>landing.jsp</welcome-file>
     <welcome-file>landing.html</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ChatServlet</display-name>
+    <servlet-name>ChatServlet</servlet-name>
+    <servlet-class>servlets.chat.ChatServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChatServlet</servlet-name>
+    <url-pattern>/ChatServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

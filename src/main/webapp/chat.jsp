@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/chat.css">
     <script src="https://kit.fontawesome.com/4b6d728af0.js" crossorigin="anonymous"></script>
+    <script src="js/chat.js"></script>
     
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
@@ -15,6 +16,10 @@
     <link rel="manifest" href="assets/favicon/site.webmanifest">
     <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <title>ChoreSplitter</title>
+    
+    <!-- User data to be accessed in javascript -->
+    <meta name="avatar" content="${avatar}"/>
+    <meta name="name" content="${name}"/>
 </head>
 <body>
 	<%
@@ -44,16 +49,11 @@
   	</header>
     <main class="page-centered">
     	<h1 class="page-header">Group Chat</h1>
-    	<div id="wrapper">
-        	<div id="menu">
-        		<p class="welcome"><b>Group:</b> ${group}<b></b></p>
-        	</div>
-        <div id="chatbox"></div>
-            <form name="message" action="chat" method="POST">
-                <input name="usermsg" type="text" id="usermsg" placeholder="Message"/>
-                <input name="submitmsg" type="submit" id="submitmsg" value="Send" />
-            </form>
-        </div>
+	    <div id="chat" class="chat"></div>
+	    <div id="wrapper">
+			<input type="text" name="msg" id="msg" placeholder="Message"/>
+	        <button id="enter" onclick="return sendMsg();">Enter</button>
+	    </div>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>

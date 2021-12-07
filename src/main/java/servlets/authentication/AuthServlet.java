@@ -1,4 +1,4 @@
-package servlets;
+package servlets.authentication;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import com.mongodb.MongoWriteException;
 
 import data.Database;
-import data.User;
+import data.serializables.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -125,4 +125,5 @@ public class AuthServlet extends HttpServlet {
 			session.setAttribute("group", code);
 		}
 	}
+	
 }

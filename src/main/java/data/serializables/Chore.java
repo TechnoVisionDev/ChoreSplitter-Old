@@ -1,4 +1,4 @@
-package data;
+package data.serializables;
 
 public class Chore {
 	

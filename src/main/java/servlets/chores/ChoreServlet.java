@@ -1,9 +1,9 @@
-package servlets;
+package servlets.chores;
 
 import java.io.IOException;
 
-import data.Chore;
 import data.Database;
+import data.serializables.Chore;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

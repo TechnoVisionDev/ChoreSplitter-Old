@@ -1,10 +1,10 @@
-package servlets;
+package servlets.chores;
 
 import java.io.IOException;
 import java.util.List;
 
 import data.Database;
-import data.User;
+import data.serializables.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

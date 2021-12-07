@@ -1,4 +1,4 @@
-package data;
+package data.serializables;
 
 /**
  * Represents a authenticated user with an email and password.

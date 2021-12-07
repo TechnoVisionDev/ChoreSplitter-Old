@@ -33,6 +33,9 @@ import com.mongodb.client.model.Sorts;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 
+import data.serializables.Chore;
+import data.serializables.User;
+
 /**
  * Interfaces with the MongoDB database.
  * @author Thomas Peters
