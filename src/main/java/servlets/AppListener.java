@@ -5,6 +5,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
+import timers.WeeklyResetTimer;
 
 /**
  * ChoreSplitter main application listener for registering global objects.
@@ -17,7 +18,12 @@ public class AppListener implements ServletContextListener {
     	// Application is being deployed
     	// Register "global" objects here
     	ServletContext sc = event.getServletContext();
-    	sc.setAttribute("database", new Database());
+    	Database db = new Database();
+    	sc.setAttribute("database", db);
+    	
+    	// Start weekly reset timer 
+    	WeeklyResetTimer reset = new WeeklyResetTimer();
+    	reset.start(db);
     }
     
     public void contextDestroyed(ServletContextEvent event) {

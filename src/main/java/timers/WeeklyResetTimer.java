@@ -3,17 +3,19 @@ package timers;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class ChoreReset {
+import data.Database;
 
-	public ChoreReset(){
-	    this.start();
-	}
+/**
+ * Executes ResetChore runnable every Sunday at 5 AM.
+ * @author Emily Kim
+ */
+public class WeeklyResetTimer {
 	
 	/**
-	 * Set to execute run() from ResetTask every Sunday at 5 am
-	 * in order to reset chores
+	 * Set to execute run() from ResetTask every Sunday at 5 am in order to reset chores.
+	 * @param db MongoDB database instance.
 	 */
-	private void start() {
+	public void start(Database db) {
 		
 	    Calendar cal = Calendar.getInstance();
 		
@@ -45,6 +47,6 @@ public class ChoreReset {
 	    
 	    // Execute after calculated delay, but also
 	    // 168 hours in a week (the period) after which it should execute again
-	    scheduler.scheduleAtFixedRate(new ResetTask(), delayInHours, 168, TimeUnit.HOURS);
+	    scheduler.scheduleAtFixedRate(new ResetChore(db), delayInHours, 168, TimeUnit.HOURS);
 	}
 }
