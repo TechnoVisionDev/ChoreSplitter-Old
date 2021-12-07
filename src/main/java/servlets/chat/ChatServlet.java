@@ -1,9 +1,9 @@
 package servlets.chat;
 
+
 import java.io.IOException;
 
 import org.bson.Document;
-
 import data.Database;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @WebServlet("/chat")
 public class ChatServlet extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 3500300307566513848L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class ChatServlet extends HttpServlet {
 		if (group == null) {
 			request.getRequestDispatcher("/group.jsp").forward(request, response); 
 		}
-		
+
 		// Get user and avatar
 		Database db = (Database) request.getServletContext().getAttribute("database");
 		String email = (String) request.getSession(false).getAttribute("email");
@@ -36,5 +36,4 @@ public class ChatServlet extends HttpServlet {
 		request.setAttribute("avatar", user.getString("avatar"));
 		request.getRequestDispatcher("/chat.jsp").forward(request, response); 
 	}
-
 }

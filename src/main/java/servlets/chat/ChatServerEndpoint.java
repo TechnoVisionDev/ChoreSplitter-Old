@@ -1,5 +1,6 @@
 package servlets.chat;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -21,27 +22,27 @@ import jakarta.websocket.server.ServerEndpoint;
 public class ChatServerEndpoint {
 	
     private static ConcurrentHashMap<String, Set<Session>> groupSessions = new ConcurrentHashMap<String, Set<Session>>();
-    private ConcurrentHashMap<String, List<String>> chatHistory = new ConcurrentHashMap<String, List<String>>();
+    private static ConcurrentHashMap<String, List<String>> chatHistory = new ConcurrentHashMap<String, List<String>>();
     
     private String group;
     
     @OnOpen
     public void onOpen(Session curSession) {
-    	// Get group code from user session
-    	group = curSession.getRequestParameterMap().get("group").get(0);
-    	
     	// Add user to group session
+    	group = curSession.getRequestParameterMap().get("group").get(0);
         if (!groupSessions.containsKey(group)) {
         	groupSessions.put(group, Collections.synchronizedSet(new HashSet<Session>()));
         }
         groupSessions.get(group).add(curSession);
         
-        // Start chat history if doesn't exist for this group
+        // Send chat history to client
         if (!chatHistory.containsKey(group)) {
         	chatHistory.put(group, Collections.synchronizedList(new ArrayList<String>()));
         } else {
-        	// Send old messages to client
-        	chatHistory.get(group).forEach(m -> curSession.getAsyncRemote().sendText(m));
+        	chatHistory.get(group).forEach(m -> {
+        		try { curSession.getBasicRemote().sendText(m);
+        		} catch (IOException e) { e.printStackTrace(); }
+        	});
         }
     }
             
@@ -57,6 +58,7 @@ public class ChatServerEndpoint {
     
     @OnMessage
     public void onMessage(String message, Session userSession) {
+    	// Broadcast message to group members
     	chatHistory.get(group).add(message);
         for (Session ses : groupSessions.get(group)) {
         	ses.getAsyncRemote().sendText(message);

@@ -18,13 +18,17 @@ function sendMsg() {
 	if (msg) {
 		var name = document.querySelector('meta[name=name]').content;
 		var avatar = document.querySelector('meta[name=avatar]').content;
-		socket.send("<div id='chat-message'>" +
+		socket.send(parseMsg(name, avatar, msg));
+    }
+	document.getElementById("msg").value = "";
+}
+
+function parseMsg(name, avatar, msg) {
+	return "<div id='chat-message'>" +
 		"<img id='chat-avatar' src='" + avatar + "'> " +
 		"<div id='msg-text'>" +
 		"<p id='chat-name' class='no-margin-p'>" + name + "</p>" +
 		"<p id='msg-content' class='no-margin-p'>" + msg + "</p>" + 
 		"</div>" + 
-		"</div>");
-    }
-	document.getElementById("msg").value = "";
+		"</div>"
 }
