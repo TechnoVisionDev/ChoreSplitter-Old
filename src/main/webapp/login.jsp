@@ -17,7 +17,7 @@
 </head>
 <body>
 	<%
-		if (null != request.getSession().getAttribute("email")) {
+		if (null != session.getAttribute("email")) {
 			response.sendRedirect("landing.jsp");
 		}
 	%>
