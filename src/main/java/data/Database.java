@@ -207,7 +207,7 @@ public class Database {
 			try {
 				List<Chore> chores = new ArrayList<Chore>();
 				for (Document doc : group.getList("chores", Document.class)) {
-					chores.add(new Chore(doc.getString("name"), doc.getString("description"), doc.getInteger("points"), doc.getInteger("time"), doc.getString("claimed")));
+					chores.add(new Chore(doc.getString("name"), doc.getString("description"), doc.getInteger("points"), doc.getInteger("time"), doc.getString("claimed"), doc.getString("avi")));
 				}
 				return chores;
 			} catch (NullPointerException ignored) { } // Chore doesn't exist in database
@@ -223,7 +223,11 @@ public class Database {
 	 */
 	public void claimChore(String email, String code, int index) {
 		Bson update = Updates.set("chores." + index + ".claimed", email);
+		Bson update2= Updates.set("chores." + index + ".avi", getUser(email).getString("avatar"));
 		groups.updateOne(Filters.eq("group", code), update);
+		groups.updateOne(Filters.eq("group", code), update2);
+		Document group=groups.find(Filters.eq("group", code)).first();
+		Document chore = group.getList("chores", Document.class).get(index);
 	}
 	
 	/**
@@ -249,6 +253,20 @@ public class Database {
 				groups.updateOne(Filters.eq("group", code), Updates.pull("chores", null));
 			} catch (IndexOutOfBoundsException ignored) { } // Chore doesn't exist in database
 		}
+	}
+	
+	public void removeUserFromGroup(String email,String code) {
+		List<Chore> chores=getChores(code);
+		int size=chores.size();
+		for(int i=0;i<size;i++) {
+			if(chores.get(i).getClaimed()!=null && chores.get(i).getClaimed().contentEquals(email)) {
+				groups.updateOne(Filters.eq("group", code), Updates.unset("chores." + i + ".claimed"));
+				groups.updateOne(Filters.eq("group", code), Updates.unset("chores." + i + ".avi"));
+			}	
+		}
+		users.updateOne(Filters.eq("email", email), Updates.unset("group"));
+		users.updateOne(Filters.eq("email", email), Updates.set("points",0));
+		
 	}
 	
 	/**

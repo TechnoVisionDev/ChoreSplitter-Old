@@ -46,7 +46,12 @@
     		<h1 class="dashboard-header">Dashboard</h1>
     	</div>
     	<c:if test="${not empty data}">
-    		<button id="add-chore-button" onclick="window.location='addChore.jsp';">Add Chore</button>
+    		<c:if test="${data.size()<3}">
+    			<button id="add-chore-button" onclick="window.location='addChore.jsp';">Add Chore</button>
+    		</c:if>
+    		<c:if test="${data.size()>=3}">
+    			<button id="cant-add-chore">Chore list is full. Please complete or delete chores in order to add new ones.</button>
+    		</c:if>
 	    	<div class="chore-container">
 	    		<c:forEach var="chore" items="${data}" varStatus="theCount">
 	    			<div class="chore">
@@ -55,7 +60,7 @@
 	    					<p class="chore-data">${chore.description}</p>
 	    				</div>
 					    <c:if test="${not empty chore.claimed}">
-					    	<img class="claimed-img" src="<%=request.getAttribute("avatar")%>" alt="A user's profile picture">
+					    	<img class="claimed-img" src="${chore.avi}" alt="A user's profile picture">
 					    </c:if>
 			    		<aside>
 			    			<p class="chore-data">${chore.points} Points</p>
@@ -63,7 +68,7 @@
 			    				<c:if test="${empty chore.claimed}">
 			    					<button id="claim-chore-button" name="claim" value="${theCount.index}"><i class="fas fa-user-check"></i></button>
 			    				</c:if>
-			    				<c:if test="${not empty chore.claimed}">
+			    				<c:if test="${not empty chore.claimed && chore.claimed==email}">
 			    					<button id="finish-chore-button" name="finish" value="${theCount.index}"><i class="fas fa-check"></i></button>
 			    				</c:if>
 			    				<button id="delete-chore-button" name="delete" value="${theCount.index}"><i class="fas fa-times"></i></button>

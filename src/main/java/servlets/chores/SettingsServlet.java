@@ -27,6 +27,7 @@ public class SettingsServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		String email = (String) request.getSession(false).getAttribute("email");
+		String group = (String) request.getSession(false).getAttribute("group");
 		Database db = (Database) request.getServletContext().getAttribute("database");
 		
 		if (null != request.getParameter("save-settings")) {
@@ -46,7 +47,8 @@ public class SettingsServlet extends HttpServlet {
 		}
 		
 		else if (null != request.getParameter("leave-group")) {
-			
+			db.removeUserFromGroup(email, group);
+			request.getSession(false).removeAttribute("group");
 		}
 		
 		request.getRequestDispatcher("/settings.jsp").forward(request, response); 
