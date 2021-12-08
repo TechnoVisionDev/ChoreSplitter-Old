@@ -1,7 +1,11 @@
 package servlets.authentication;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 import java.util.regex.Pattern;
+
+import javax.imageio.ImageIO;
 
 import com.mongodb.MongoWriteException;
 
@@ -63,6 +67,12 @@ public class AuthServlet extends HttpServlet {
 			String confirm_pass = request.getParameter("confirm_pass");
 			String terms = request.getParameter("terms");
 			
+			// Check avatar validity
+			String avatar = request.getParameter("avatar");
+			if (!isValidImage(avatar)) {
+				avatar = DEFAULT_AVATAR;
+			}
+			
 			// Server side validation
 			String errorMessage = null;
 			if (!validEmail(email)) {
@@ -78,7 +88,7 @@ public class AuthServlet extends HttpServlet {
 			} else {
 				try { 
 					// Register user to database
-					db.registerUser(new User(email, name, password, DEFAULT_AVATAR));
+					db.registerUser(new User(email, name, password, avatar));
 					createSession(request.getSession(), name, email, db.getUserValue(email, "group"));
 		            request.getRequestDispatcher("/group.jsp").forward(request, response);
 		            return;
@@ -124,6 +134,19 @@ public class AuthServlet extends HttpServlet {
 		if (code != null) {
 			session.setAttribute("group", code);
 		}
+	}
+	
+	/**
+	 * Checks if image address url is valid.
+	 * @param url image address url string.
+	 * @return true if valid image, otherwise false.
+	 */
+	private boolean isValidImage(String url) {
+        try {  
+        	BufferedImage image = ImageIO.read(new URL(url));   
+            return (image != null);
+        } catch (IOException ignored) { }
+        return false;
 	}
 	
 }

@@ -67,6 +67,8 @@
   				<input type="password" class="textbox" name="password" autoComplete="new-password" required pattern="\S(.*\S)?">
   				<label>Confirm Password</label>
   				<input type="password" class="textbox" name="confirm_pass" autoComplete="new-password" required pattern="\S(.*\S)?">
+  				<label>Profile Picture</label>
+  				<input type="text" class="textbox" name="avatar" placeholder="Optional">
   				<div>
 	  				<label class="terms">
 	  					<input type="checkbox" name="terms" class="terms" required>
