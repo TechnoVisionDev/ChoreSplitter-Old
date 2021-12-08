@@ -126,6 +126,17 @@ public class Database {
 	}
 	
 	/**
+	 * Sets a string in User document to a new value.
+	 * @param email of the user.
+	 * @param key to update.
+	 * @param value to update.
+	 */
+	public void setUserString(String email, String key, String value) {
+		Bson update = Updates.set(key, value);
+		users.updateOne(Filters.eq("email", email), update);
+	}
+	
+	/**
 	 * Adds a user to a housing group using a unique code.
 	 * @param email of the user stored in session.
 	 */

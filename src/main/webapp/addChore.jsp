@@ -54,13 +54,12 @@
 		    		<input type="number" class="textbox" name="chore-time" placeholder="Estimated Time for Chore Completion (in days)" min="1" max="365" required>
 		    		<p class="divider"></p>
 		    		<button type="submit" name="submit-chore" class="create-button" class="add-chore-form">Add Chore!</button>
-		    		<%
-						if (null != request.getAttribute("choreError")) {
-							out.println("<p class=\"error-message\" style=\"margin-top:15px;\">The chore you entered was invalid!</p>");
-						} else {
-							out.println("<p class=\"error-message\" style=\"visibility: hidden;\">invisible</p>");
-						}
-					%>
+		    		<c:if test="${not empty choreError}" var="errorCondition">
+			   			<p class="error-message" style="margin-top:15px;">The chore you entered was invalid!</p>
+			   		</c:if>
+			   		<c:if test="${!errorCondition}">
+			   			<p class="error-message" style="visibility: hidden;">invisible</p>
+			   		</c:if>
 		    	</form>
 	    	</div>
 	    	<img src="assets/group/decoration2.png" alt="Man doing chores" id="chores-decoration">

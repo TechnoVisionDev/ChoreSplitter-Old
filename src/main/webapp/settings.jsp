@@ -47,28 +47,24 @@
     	<div id="settings-body">
     		<img src="assets/group/decoration1.png" alt="Woman doing chores" id="chores-decoration">
     		<div id="settings-body">
-    		
-	    		<form class="settings-form" id="settings" action="settings" method="GET">
+	    		<form class="settings-form" id="settings" action="settings" method="POST">
 	    			<label>
-	    				Choose a profile picture: 
-						<input type="file" class="profile" name="user-profile" accept="image/png, image/jpeg">
+	    				Change Profile Picture:
+						<input type="text" class="textbox" name="avatar" placeholder="Image URL">
 	    			</label>
 	    			<label>
-	    				Change your name: 
-						<input type="text" class="textbox" name="user-name" placeholder="Your name">
-	    			
+	    				Change Name: 
+						<input type="text" class="textbox" name="name" placeholder="Your name">
 	    			</label>
-	    			
 			   		<p class="divider"></p>
 			   		<button type="submit" name="leave-group" class="leave-button" class="settings-form">Leave Group</button>
-			   		<button type="submit" name="submit-settings" class="settings-change-button">Submit Changes</button>
-			   		<%
-						if (null != request.getAttribute("settingsError")) {
-							out.println("<p class=\"error-message\" style=\"margin-top:15px;\">Your change was invalid!</p>");
-						} else {
-							out.println("<p class=\"error-message\" style=\"visibility: hidden;\">invisible</p>");
-						}
-					%>
+			   		<button type="submit" name="save-settings" class="settings-change-button">Submit Changes</button>
+			   		<c:if test="${not empty settingsError}" var="errorCondition">
+			   			<p class="error-message" style="margin-top:15px; margin-left: auto; margin-right: auto;">${settingsError}</p>
+			   		</c:if>
+			   		<c:if test="${!errorCondition}">
+			   			<p class="error-message" style="visibility: hidden;">invisible</p>
+			   		</c:if>
 	    		</form>
 	    	</div>
 	    	<img src="assets/group/decoration2.png" alt="Man doing chores" id="chores-decoration">
