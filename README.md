@@ -102,6 +102,7 @@ Below is a comprehensive list of the frameworks, libraries, and languages used t
 * [MongoDB Java Driver](https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver)
 * [JSTL](https://mvnrepository.com/artifact/jstl/jstl)
 * [JNanoID](https://github.com/aventrix/jnanoid)
+* [Jakarta Websockets](https://mvnrepository.com/artifact/jakarta.websocket/jakarta.websocket-api)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
