@@ -1,6 +1,5 @@
 package servlets.chat;
 
-
 import java.io.IOException;
 
 import org.bson.Document;

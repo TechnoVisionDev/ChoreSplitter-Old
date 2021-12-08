@@ -35,7 +35,58 @@
   	</header>
     <main class="page-centered">
     	<h1 class="page-header">Features</h1>
-    	<p>Insert details here</p>
+    	<p>Why your home should use ChoreSplitter!</p>
+	    <section id="info">
+	        <div class="feature">
+	            <div>
+	                <h2>Custom Housing Groups</h2>
+	                	<p> Create your own housing group with a unique 6-letter code. Your roomates
+	                	    can then use this code to join your group! You have total control of who
+	                	    you let access your dashboard.
+	                    </p>
+	            </div>
+	            <img src="assets/features/group.png" alt="Group selection interface">
+	        </div>
+	        <div class="feature">
+	            <div>
+	                <h2>Chore Dashboard</h2>
+	                    <p>Access a dynamic dashboard where you can add custom chores for your roomates.
+	                        Claim and complete chores to earn points and compete with your friends!
+	                    </p>
+	            </div>
+	            <img src="assets/features/dashboard.png" alt="Chore dashboard interface">
+	        </div>
+	        <div class="feature">
+	            <div>
+	                <h2>Leaderboard</h2>
+	                    <p>As you earn points, you will rank up on the group leaderboard. Compete with your
+	                        roomates to get the most chores done before the end of each week to avoid the
+	                        slot of shame!
+	                    </p>
+	            </div>
+	            <img src="assets/features/leaderboard.png" alt="Leaderboard interface">
+	        </div>
+	        <div class="feature">
+	            <div>
+	                <h2>Group Chat</h2>
+	                    <p>Communicate with your roomates using the built-in group chat. Here you
+	                        can put together grocery lists, talk about upcoming events, and give
+	                        each other tasks!
+	                    </p>
+	            </div>
+	            <img src="assets/features/chat.png" alt="Group chat interface">
+	        </div>
+	        <div class="feature">
+	            <div>
+	                <h2>Settings</h2>
+	                    <p>No longer feeling your profile picture? No problem! With the settings menu,
+	                        you can fully customize your profile by changing your name, profile picture,
+	                        and even leaving your current group!
+	                    </p>
+	            </div>
+	            <img src="assets/features/settings.png" alt="Settings interface">
+	        </div>
+	    </section>
     </main>
     <footer>
         <span>&copy; 2021 All Rights Reserved.</span>
