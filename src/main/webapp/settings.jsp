@@ -46,7 +46,7 @@
     	<div id="settings-body">
     		<img src="assets/group/decoration1.png" alt="Woman doing chores" id="chores-decoration">
     		<div id="settings-body">
-	    		<form class="settings-form" id="settings" action="settings" method="POST">
+	    		<form class="settings-form" id="changesettings" action="SettingsServlet" method="POST">
 	    			<label>
 	    				Change Profile Picture:
 						<input type="text" class="textbox" name="avatar" placeholder="Image URL">
