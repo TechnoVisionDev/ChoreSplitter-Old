@@ -49,11 +49,7 @@
     		<c:if test="${data.size()<100}">
     			<button id="add-chore-button" onclick="window.location='addChore.jsp';">Add Chore</button>
     		</c:if>
-<<<<<<< HEAD
     		<c:if test="${data.size()>=100}">
-=======
-    		<c:if test="${data.size()>=50}">
->>>>>>> 9f53821 (change chore limit to 50, fix settings)
     			<button id="cant-add-chore">Chore list is full. Please complete or delete chores in order to add new ones.</button>
     		</c:if>
 	    	<div class="chore-container">
