@@ -518,6 +518,41 @@ aside {
 	margin-bottom: 30px;
 }
 
+.settings-change-button {
+	background-color: gold;
+	color: black;
+	font-size: 15px;
+	height: 40px;
+	width: 385px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+}
+
+.settings-change-button:hover {
+	background-color: #edcb09;
+}
+
+.leave-button {
+	background-color: #bb0000;
+	color: white;
+	font-size: 15px;
+	height: 40px;
+	width: 225px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.leave-button:hover {
+	background-color: #972d20;
+}
+
 @media screen {
    
   	.chat {
