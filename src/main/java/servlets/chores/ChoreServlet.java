@@ -37,7 +37,6 @@ public class ChoreServlet extends HttpServlet {
 			String group = (String) request.getSession(false).getAttribute("group");
 			
 			db.addChore(group, chore);
-			//request.getRequestDispatcher("/dashboard").forward(request, response); 
 			response.sendRedirect(request.getContextPath()+"/dashboard");
 		} catch (Exception e) {
 			e.printStackTrace();

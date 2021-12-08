@@ -35,12 +35,12 @@
   	</header>
     <main class="page-centered">
     	<h1 class="page-header">Features</h1>
-    	<p>Why your home should use ChoreSplitter!</p>
+    	<p>What ChoreSplitter has to offer:</p>
 	    <section id="info">
 	        <div class="feature">
 	            <div>
 	                <h2>Custom Housing Groups</h2>
-	                	<p> Create your own housing group with a unique 6-letter code. Your roomates
+	                	<p> Create your own housing group with a unique 6-letter code. Your roommates
 	                	    can then use this code to join your group! You have total control of who
 	                	    you let access your dashboard.
 	                    </p>
@@ -50,7 +50,7 @@
 	        <div class="feature">
 	            <div>
 	                <h2>Chore Dashboard</h2>
-	                    <p>Access a dynamic dashboard where you can add custom chores for your roomates.
+	                    <p>Access a dynamic dashboard where you can add custom chores for your roommates.
 	                        Claim and complete chores to earn points and compete with your friends!
 	                    </p>
 	            </div>
@@ -60,7 +60,7 @@
 	            <div>
 	                <h2>Leaderboard</h2>
 	                    <p>As you earn points, you will rank up on the group leaderboard. Compete with your
-	                        roomates to get the most chores done before the end of each week to avoid the
+	                        roommates to get the most chores done before the end of each week to avoid the
 	                        slot of shame!
 	                    </p>
 	            </div>
@@ -69,7 +69,7 @@
 	        <div class="feature">
 	            <div>
 	                <h2>Group Chat</h2>
-	                    <p>Communicate with your roomates using the built-in group chat. Here you
+	                    <p>Communicate with your roommates using the built-in group chat. Here you
 	                        can put together grocery lists, talk about upcoming events, and give
 	                        each other tasks!
 	                    </p>
