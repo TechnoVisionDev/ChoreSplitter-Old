@@ -46,10 +46,17 @@
     		<h1 class="dashboard-header">Dashboard</h1>
     	</div>
     	<c:if test="${not empty data}">
+<<<<<<< HEAD
     		<c:if test="${data.size() < 100}">
     			<button id="add-chore-button" onclick="window.location='addChore.jsp';">Add Chore</button>
     		</c:if>
     		<c:if test="${data.size() >= 100}">
+=======
+    		<c:if test="${data.size()<50}">
+    			<button id="add-chore-button" onclick="window.location='addChore.jsp';">Add Chore</button>
+    		</c:if>
+    		<c:if test="${data.size()>=50}">
+>>>>>>> 9113fc53761c5e9bbb1bd48308d5c4e11eed7402
     			<button id="cant-add-chore">Chore list is full. Please complete or delete chores in order to add new ones.</button>
     		</c:if>
 	    	<div class="chore-container">
