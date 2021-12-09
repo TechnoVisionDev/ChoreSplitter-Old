@@ -28,6 +28,7 @@ public class LeaderboardServlet extends HttpServlet {
 		String group = (String) request.getSession(false).getAttribute("group");
 		if (group == null) {
 			request.getRequestDispatcher("/group.jsp").forward(request, response); 
+			return;
 		}
 		
 		// Sort group by points as send to leaderboard.jsp

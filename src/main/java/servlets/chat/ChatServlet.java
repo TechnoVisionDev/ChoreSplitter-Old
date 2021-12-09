@@ -24,6 +24,7 @@ public class ChatServlet extends HttpServlet {
 		String group = (String) request.getSession(false).getAttribute("group");
 		if (group == null) {
 			request.getRequestDispatcher("/group.jsp").forward(request, response); 
+			return;
 		}
 
 		// Get user and avatar

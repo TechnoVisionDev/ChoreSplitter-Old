@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Handles dashboard chores for group
@@ -28,15 +29,23 @@ public class DashboardServlet extends HttpServlet {
 	 * Displays chores to dashboard from database
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Check that user is authenticated before proceeding.
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			response.sendRedirect(request.getContextPath()+"/landing.jsp");
+			return;
+		}
+		
 		// Check if user is in a group before proceeding.
-		String group = (String) request.getSession(false).getAttribute("group");
+		String group = (String) session.getAttribute("group");
 		if (group == null) {
 			request.getRequestDispatcher("/group.jsp").forward(request, response); 
+			return;
 		}
 
 		// Get user data
 		Database db = (Database) request.getServletContext().getAttribute("database");
-		String email = (String) request.getSession(false).getAttribute("email");
+		String email = (String) session.getAttribute("email");
 		Document user = db.getUser(email);
 		if (user != null) {
 			request.setAttribute("name", user.getString("name"));
@@ -51,17 +60,19 @@ public class DashboardServlet extends HttpServlet {
 		// Get chore list and avatars
 		List<Chore> chores = db.getChores(group);
 		Map<String, String> avatars = new HashMap<String, String>();
-		for (Chore chore : chores) {
-			String claimEmail = chore.getClaimed();
-			if (!claimEmail.isBlank()) {
-				if (!avatars.containsKey(claimEmail)) {
-					String avatar = db.getUserValue(claimEmail, "avatar");
-					avatars.put(claimEmail, avatar);
+		if (chores != null) {
+			for (Chore chore : chores) {
+				String claimEmail = chore.getClaimed();
+				if (!claimEmail.isBlank()) {
+					if (!avatars.containsKey(claimEmail)) {
+						String avatar = db.getUserValue(claimEmail, "avatar");
+						avatars.put(claimEmail, avatar);
+					}
 				}
 			}
 		}
 	
-		// Send data and avatars to dashboard.jsp
+		// Send data to dashboard.jsp
 		request.setAttribute("data", chores);
 		request.setAttribute("avatars", avatars);
 		request.getRequestDispatcher("/dashboard.jsp").forward(request, response); 

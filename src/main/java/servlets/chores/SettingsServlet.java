@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Handles user settings form.
@@ -26,8 +27,15 @@ public class SettingsServlet extends HttpServlet {
 	 * Validates settings form and executes changes in MongoDB.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		String email = (String) request.getSession(false).getAttribute("email");
-		String group = (String) request.getSession(false).getAttribute("group");
+		// Check that user is authenticated before proceeding.
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			response.sendRedirect(request.getContextPath()+"/landing.jsp");
+			return;
+		}
+		
+		String email = (String) session.getAttribute("email");
+		String group = (String) session.getAttribute("group");
 		Database db = (Database) request.getServletContext().getAttribute("database");
 		
 		if (null != request.getParameter("save-settings")) {
