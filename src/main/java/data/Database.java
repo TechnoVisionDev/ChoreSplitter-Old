@@ -226,8 +226,19 @@ public class Database {
 		Bson update2= Updates.set("chores." + index + ".avi", getUser(email).getString("avatar"));
 		groups.updateOne(Filters.eq("group", code), update);
 		groups.updateOne(Filters.eq("group", code), update2);
-		Document group=groups.find(Filters.eq("group", code)).first();
-		Document chore = group.getList("chores", Document.class).get(index);
+	}
+	
+	/**
+	 * Marks a chore in group array as claimed by user email.
+	 * @param email email of the user claiming the chore.
+	 * @param code unique group code.
+	 * @param index of the chore in array.
+	 */
+	public void unclaimChore(String email, String code, int index) {
+		Bson update = Updates.set("chores." + index + ".claimed", "");
+		Bson update2 = Updates.set("chores." + index + ".avi", "");
+		groups.updateOne(Filters.eq("group", code), update);
+		groups.updateOne(Filters.eq("group", code), update2);
 	}
 	
 	/**

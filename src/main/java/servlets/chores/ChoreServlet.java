@@ -59,6 +59,9 @@ public class ChoreServlet extends HttpServlet {
 		} else if (null != request.getParameter("delete")) {
 			int index = Integer.parseInt(request.getParameter("delete"));
 			db.deleteChore(group, index);
+		} else if (null != request.getParameter("unclaim")) {
+			int index = Integer.parseInt(request.getParameter("unclaim"));
+			db.unclaimChore(email, group, index);
 		}
 		
 		response.sendRedirect(request.getContextPath() + "/dashboard");
