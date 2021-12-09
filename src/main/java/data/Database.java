@@ -192,8 +192,8 @@ public class Database {
 	 * @param index of chore in array.
 	 */
 	public void deleteChore(String code, int index) {
-		Bson delete = Updates.combine(Updates.unset("chores." + index), Updates.pull("chores", null));
-		groups.updateOne(Filters.eq("group", code), delete);
+		groups.updateOne(Filters.eq("group", code), Updates.unset("chores." + index));
+		groups.updateOne(Filters.eq("group", code), Updates.pull("chores", null));
 	}
 	
 	/**
@@ -251,11 +251,10 @@ public class Database {
 				int points = chore.getInteger("points");
 				String email = chore.getString("claimed");
 				
-				// Add points to user
+				// Add points to user and delete chore
 				users.updateOne(Filters.eq("email", email), Updates.inc("points", points));
-				
-				// Delete chore from database
-				groups.updateOne(Filters.eq("group", code), Updates.combine(Updates.unset("chores." + index), Updates.pull("chores", null)));
+				groups.updateOne(Filters.eq("group", code), Updates.unset("chores." + index));
+				groups.updateOne(Filters.eq("group", code), Updates.pull("chores", null));
 			} catch (IndexOutOfBoundsException ignored) { } // Chore doesn't exist in database
 		}
 	}

@@ -42,7 +42,7 @@
   	</header>
     <main>
     	<div id="dashboard-header">
-    		<p id="dashboard-code"><b>Group:</b>${group}</p>
+    		<p id="dashboard-code"><b>Group:</b> ${group}</p>
     		<h1 class="dashboard-header">Dashboard</h1>
     	</div>
     	<c:if test="${not empty data}">
