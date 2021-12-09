@@ -38,10 +38,10 @@
   <p align="center">
     A web application to split chores with roomates!
     <br />
-    <a href="https://github.com/TechnoVisionDev/ChoreSplitter/wiki"><strong>Explore the wiki »</strong></a>
+    <a href="http://ec2-3-82-193-93.compute-1.amazonaws.com:8080/ChoreSplitter"><strong>Explore this website »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/TechnoVisionDev/ChoreSplitter">View Demo</a>
+    <a href="https://github.com/TechnoVisionDev/ChoreSplitter/wiki">Visit Wiki</a>
     ·
     <a href="https://github.com/TechnoVisionDev/ChoreSplitter/issues">Report Bug</a>
     ·
