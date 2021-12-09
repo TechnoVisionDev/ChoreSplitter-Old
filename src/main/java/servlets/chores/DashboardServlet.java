@@ -1,10 +1,14 @@
 package servlets.chores;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.bson.Document;
 
 import data.Database;
+import data.serializables.Chore;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -30,7 +34,7 @@ public class DashboardServlet extends HttpServlet {
 			request.getRequestDispatcher("/group.jsp").forward(request, response); 
 		}
 
-		// Get user and chore data
+		// Get user data
 		Database db = (Database) request.getServletContext().getAttribute("database");
 		String email = (String) request.getSession(false).getAttribute("email");
 		Document user = db.getUser(email);
@@ -43,9 +47,23 @@ public class DashboardServlet extends HttpServlet {
 			request.setAttribute("points", 0);
 			request.setAttribute("avatar", "https://i.stack.imgur.com/34AD2.jpg");
 		}
+		
+		// Get chore list and avatars
+		List<Chore> chores = db.getChores(group);
+		Map<String, String> avatars = new HashMap<String, String>();
+		for (Chore chore : chores) {
+			String claimEmail = chore.getClaimed();
+			if (!claimEmail.isBlank()) {
+				if (!avatars.containsKey(claimEmail)) {
+					String avatar = db.getUserValue(claimEmail, "avatar");
+					avatars.put(claimEmail, avatar);
+				}
+			}
+		}
 	
-		// Send data to dashboard.jsp
-		request.setAttribute("data", db.getChores(group));
+		// Send data and avatars to dashboard.jsp
+		request.setAttribute("data", chores);
+		request.setAttribute("avatars", avatars);
 		request.getRequestDispatcher("/dashboard.jsp").forward(request, response); 
 	}
 }

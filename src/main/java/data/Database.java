@@ -192,8 +192,8 @@ public class Database {
 	 * @param index of chore in array.
 	 */
 	public void deleteChore(String code, int index) {
-		groups.updateOne(Filters.eq("group", code), Updates.unset("chores." + index));
-		groups.updateOne(Filters.eq("group", code), Updates.pull("chores", null));
+		Bson delete = Updates.combine(Updates.unset("chores." + index), Updates.pull("chores", null));
+		groups.updateOne(Filters.eq("group", code), delete);
 	}
 	
 	/**
@@ -207,7 +207,7 @@ public class Database {
 			try {
 				List<Chore> chores = new ArrayList<Chore>();
 				for (Document doc : group.getList("chores", Document.class)) {
-					chores.add(new Chore(doc.getString("name"), doc.getString("description"), doc.getInteger("points"), doc.getInteger("time"), doc.getString("claimed"), doc.getString("avi")));
+					chores.add(new Chore(doc.getString("name"), doc.getString("description"), doc.getInteger("points"), doc.getInteger("time"), doc.getString("claimed")));
 				}
 				return chores;
 			} catch (NullPointerException ignored) { } // Chore doesn't exist in database
@@ -223,9 +223,7 @@ public class Database {
 	 */
 	public void claimChore(String email, String code, int index) {
 		Bson update = Updates.set("chores." + index + ".claimed", email);
-		Bson update2= Updates.set("chores." + index + ".avi", getUser(email).getString("avatar"));
 		groups.updateOne(Filters.eq("group", code), update);
-		groups.updateOne(Filters.eq("group", code), update2);
 	}
 	
 	/**
@@ -236,9 +234,7 @@ public class Database {
 	 */
 	public void unclaimChore(String email, String code, int index) {
 		Bson update = Updates.set("chores." + index + ".claimed", "");
-		Bson update2 = Updates.set("chores." + index + ".avi", "");
 		groups.updateOne(Filters.eq("group", code), update);
-		groups.updateOne(Filters.eq("group", code), update2);
 	}
 	
 	/**
@@ -256,12 +252,10 @@ public class Database {
 				String email = chore.getString("claimed");
 				
 				// Add points to user
-				users.find(Filters.eq("email", email)).first();
 				users.updateOne(Filters.eq("email", email), Updates.inc("points", points));
 				
 				// Delete chore from database
-				groups.updateOne(Filters.eq("group", code), Updates.unset("chores." + index));
-				groups.updateOne(Filters.eq("group", code), Updates.pull("chores", null));
+				groups.updateOne(Filters.eq("group", code), Updates.combine(Updates.unset("chores." + index), Updates.pull("chores", null)));
 			} catch (IndexOutOfBoundsException ignored) { } // Chore doesn't exist in database
 		}
 	}
@@ -275,13 +269,12 @@ public class Database {
 		List<Chore> chores = getChores(code);
 		int size = chores.size();
 		for (int i = 0; i < size; i++) {
-			if (!chores.get(i).getClaimed().isBlank() && chores.get(i).getClaimed().contentEquals(email)) {
-				groups.updateOne(Filters.eq("group", code), Updates.set("chores." + i + ".claimed", ""));
-				groups.updateOne(Filters.eq("group", code), Updates.set("chores." + i + ".avi", ""));
+			String choreClaim = chores.get(i).getClaimed();
+			if (!choreClaim.isBlank() && choreClaim.contentEquals(email)) {
+				unclaimChore(email, code, i);
 			}	
 		}
-		users.updateOne(Filters.eq("email", email), Updates.unset("group"));
-		users.updateOne(Filters.eq("email", email), Updates.set("points",0));
+		users.updateOne(Filters.eq("email", email), Updates.combine(Updates.unset("group"), Updates.set("points",0)));
 		
 	}
 	

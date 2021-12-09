@@ -7,7 +7,6 @@ public class Chore {
 	private int points;
 	private int time;
 	private String claimed;
-	private String avi;
 	
 	public Chore(String name, String description, int points, int time) {
 		this.name = name;
@@ -15,7 +14,6 @@ public class Chore {
 		this.points = points;
 		this.time = time;
 		this.claimed = "";
-		this.avi="";
 	}
 	
 	public Chore(String name, String description, int points, int time, String claimed) {
@@ -24,16 +22,6 @@ public class Chore {
 		this.points = points;
 		this.time = time;
 		this.claimed = claimed;
-		this.avi="";
-	}
-	
-	public Chore(String name, String description, int points, int time, String claimed, String avi) {
-		this.name = name;
-		this.description = description;
-		this.points = points;
-		this.time = time;
-		this.claimed = claimed;
-		this.avi=avi;
 	}
 	
 	public String getName() {
@@ -54,9 +42,5 @@ public class Chore {
 	
 	public String getClaimed() {
 		return claimed;
-	}
-	
-	public String getAvi() {
-		return avi;
 	}
 }

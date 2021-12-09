@@ -60,7 +60,7 @@
 	    					<p class="chore-data">${chore.description}</p>
 	    				</div>
 					    <c:if test="${not empty chore.claimed}">
-					    	<img class="claimed-img" src="${chore.avi}" alt="A user's profile picture">
+					    	<img class="claimed-img" src="${avatars[chore.claimed]}" alt="A user's profile picture">
 					    </c:if>
 			    		<aside>
 			    			<p class="chore-data">${chore.points} Points</p>
