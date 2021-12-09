@@ -255,13 +255,18 @@ public class Database {
 		}
 	}
 	
+	/**
+	 * Removes a user from a group, resets points, and un-claims any claimed chores.
+	 * @param email of the user.
+	 * @param code unique group code.
+	 */
 	public void removeUserFromGroup(String email,String code) {
-		List<Chore> chores=getChores(code);
-		int size=chores.size();
-		for(int i=0;i<size;i++) {
-			if(chores.get(i).getClaimed()!=null && chores.get(i).getClaimed().contentEquals(email)) {
-				groups.updateOne(Filters.eq("group", code), Updates.unset("chores." + i + ".claimed"));
-				groups.updateOne(Filters.eq("group", code), Updates.unset("chores." + i + ".avi"));
+		List<Chore> chores = getChores(code);
+		int size = chores.size();
+		for (int i = 0; i < size; i++) {
+			if (!chores.get(i).getClaimed().isBlank() && chores.get(i).getClaimed().contentEquals(email)) {
+				groups.updateOne(Filters.eq("group", code), Updates.set("chores." + i + ".claimed", ""));
+				groups.updateOne(Filters.eq("group", code), Updates.set("chores." + i + ".avi", ""));
 			}	
 		}
 		users.updateOne(Filters.eq("email", email), Updates.unset("group"));

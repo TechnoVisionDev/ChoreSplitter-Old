@@ -42,14 +42,14 @@
   	</header>
     <main>
     	<div id="dashboard-header">
-    		<p id="dashboard-code"><b>Group:</b> <%= request.getSession().getAttribute("group") %></p>
+    		<p id="dashboard-code"><b>Group:</b>${group}</p>
     		<h1 class="dashboard-header">Dashboard</h1>
     	</div>
     	<c:if test="${not empty data}">
-    		<c:if test="${data.size()<100}">
+    		<c:if test="${data.size() < 100}">
     			<button id="add-chore-button" onclick="window.location='addChore.jsp';">Add Chore</button>
     		</c:if>
-    		<c:if test="${data.size()>=100}">
+    		<c:if test="${data.size() >= 100}">
     			<button id="cant-add-chore">Chore list is full. Please complete or delete chores in order to add new ones.</button>
     		</c:if>
 	    	<div class="chore-container">
@@ -67,11 +67,12 @@
 			    			<form id="chore-buttons" action="chore" method="POST">
 			    				<c:if test="${empty chore.claimed}">
 			    					<button id="claim-chore-button" name="claim" value="${theCount.index}"><i class="fas fa-user-check"></i></button>
+			    					<button id="delete-chore-button" name="delete" value="${theCount.index}"><i class="fas fa-times"></i></button>
 			    				</c:if>
 			    				<c:if test="${not empty chore.claimed && chore.claimed==email}">
 			    					<button id="finish-chore-button" name="finish" value="${theCount.index}"><i class="fas fa-check"></i></button>
+			    					<button id="delete-chore-button" name="delete" value="${theCount.index}"><i class="fas fa-times"></i></button>
 			    				</c:if>
-			    				<button id="delete-chore-button" name="delete" value="${theCount.index}"><i class="fas fa-times"></i></button>
 			    			</form>
 			    		</aside>
 	    			</div>
